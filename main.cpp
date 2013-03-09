@@ -6,7 +6,11 @@
 #include "enumerate.hpp"
 
 
-strap::Problem<int, int>* read(const std::string& filename)
+typedef int PType;
+typedef int WType;
+typedef strap::Problem<PType, WType> Problem;
+
+Problem* read(const std::string& filename)
 {
   std::ifstream ifs(filename.c_str());
 
@@ -19,7 +23,7 @@ strap::Problem<int, int>* read(const std::string& filename)
   int d;
   ifs >> d;
 
-  strap::Problem<int, int>* problem = new strap::Problem<int, int>(k, d);
+  Problem* problem = new Problem(k, d);
 
   for (int k = 0; k < d; ++k) {
     ifs >> problem->c(k);
@@ -38,7 +42,7 @@ strap::Problem<int, int>* read(const std::string& filename)
 }
 
 
-void dump(const strap::Problem<int, int>& problem)
+void dump(const Problem& problem)
 {
   for (int k = 0; k < problem.d(); ++k) {
     std::cout << problem.c(k) << ' ';
@@ -61,7 +65,7 @@ int main(int argc, char* argv[])
 {
   std::string filename(argv[1]);
 
-  strap::Problem<int, int>* problem = read(filename);
+  Problem* problem = read(filename);
 
   dump(*problem);
 
