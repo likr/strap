@@ -30,13 +30,6 @@ Problem<PType, WType>::Problem(const std::vector<int>& k, const int d)
 }
 
 
-template<typename PType, typename WType>
-Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
-{
-  return Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);
-}
-
-
 template class Item<int, int>;
 template class Item<double, double>;
 template class Problem<int, int>;

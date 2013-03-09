@@ -121,6 +121,13 @@ const typename Problem<PType, WType>::CRandomAccessIterator Problem<PType, WType
   return &c_[0];
 }
 
+
+template<typename PType, typename WType>
+Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
+{
+  return Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);
+}
+
 }
 
 #endif
