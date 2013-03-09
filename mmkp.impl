@@ -34,14 +34,14 @@ const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::w_e
 template<typename PType, typename WType>
 const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::W::begin() const
 {
-  return w_;
+  return item_.w_;
 }
 
 
 template<typename PType, typename WType>
 const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::W::end() const
 {
-  return w_ + d_;
+  return item_.w_ + item_.d_;
 }
 
 
