@@ -1,0 +1,15 @@
+CXX = clang++
+CXXFLAGS += -Wall -O3 -std=c++11 -stdlib=libc++
+INCLUDES += $(absname src)
+
+LIBS[] +=
+	src/mmkp/libmmkp
+EXECUTABLE = $(CXXProgram strapmain, src/main/main)
+
+.PHONY: clean
+.SUBDIRS: src
+.DEFAULT: $(EXECUTABLE)
+
+clean:
+	rm -f $(EXECUTABLE)
+

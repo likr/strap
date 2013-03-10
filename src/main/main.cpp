@@ -2,13 +2,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "mmkp.hpp"
-#include "enumerate.hpp"
+#include "mmkp/core/problem.hpp"
+#include "mmkp/algorithm/enumerate.hpp"
 
 
 typedef int PType;
 typedef int WType;
-typedef strap::Problem<PType, WType> Problem;
+typedef strap::mmkp::Problem<PType, WType> Problem;
 
 Problem* read(const std::string& filename)
 {
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
   dump(*problem);
 
   auto start = std::chrono::system_clock::now();
-  auto res = strap::enumerate(*problem);
+  auto res = strap::mmkp::algorithm::enumerate(*problem);
   auto stop = std::chrono::system_clock::now();
   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
   std::cout << res << ' ' << time.count() << std::endl;

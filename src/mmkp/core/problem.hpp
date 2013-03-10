@@ -1,42 +1,11 @@
-#ifndef STRAP_CORE_MMKP_H_
-#define STRAP_CORE_MMKP_H_
+#ifndef STRAP_MMKP_CORE_PROBLEM_HPP_
+#define STRAP_MMKP_CORE_PROBLEM_HPP_
 
 #include <vector>
+#include "item.hpp"
 
 namespace strap {
-
-template<typename PType, typename WType>
-class Item
-{
-
-public:
-  typedef const WType* WRandomAccessIterator;
-
-  class W
-  {
-  public:
-    W(Item& item);
-    const WRandomAccessIterator begin() const;
-    const WRandomAccessIterator end() const;
-  private:
-    Item& item_;
-  };
-
-  Item(const PType* p, const WType* w, const int d);
-  const PType& p() const;
-  W w() const;
-  const WType& w(const int k) const;
-  const WRandomAccessIterator w_begin() const;
-  const WRandomAccessIterator w_end() const;
-
-
-
-private:
-  const PType* p_;
-  const WType* w_;
-  int d_;
-};
-
+namespace mmkp {
 
 template<typename PType, typename WType> 
 class Problem
@@ -70,7 +39,8 @@ private:
   int d_;
 };
 
+} // namespace mmkp
 } // namespace strap
 
-#include "mmkp.impl"
+#include "problem-inl.hpp"
 #endif

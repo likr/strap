@@ -1,8 +1,10 @@
 #include <vector>
-#include "mmkp.hpp"
 #include "enumerate.hpp"
+#include "mmkp/core/problem.hpp"
 
 namespace strap {
+namespace mmkp {
+namespace algorithm {
 namespace {
 
 template<typename PType, typename WType>
@@ -54,7 +56,7 @@ private:
 
     if (i == bottom_) {
       for (int j = 0; j < problem_.k(i); ++j) {
-        const strap::Item<PType, WType> item = problem_.item(i, j);
+        const Item<PType, WType> item = problem_.item(i, j);
         if (is_feasible(c, item.w_begin(), d_)) {
           lower_bound = std::max(lower_bound, item.p());
         }
@@ -63,7 +65,7 @@ private:
     } else {
       WType* new_c = c + d_;
       for (int j = 0; j < problem_.k(i); ++j) {
-        const strap::Item<PType, WType> item = problem_.item(i, j);
+        const Item<PType, WType> item = problem_.item(i, j);
         bool is_feasible = true;
         for (int k = 0; k < d_; ++k) {
           new_c[k] = c[k] - item.w(k);
@@ -101,4 +103,6 @@ PType enumerate(const Problem<PType, WType>& problem)
 template int enumerate<int, int>(const Problem<int, int>&);
 template double enumerate<double, double>(const Problem<double, double>&);
 
+} // namespace algorithm
+} // namespace mmkp
 } // namespace strap

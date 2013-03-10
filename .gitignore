@@ -11,3 +11,11 @@
 *.lai
 *.la
 *.a
+
+# OMake
+*.omc
+*.omakedb
+*.omakedb.lock
+
+# Executable
+strapmain

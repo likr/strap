@@ -1,49 +1,10 @@
 #ifndef STRAP_CORE_MMKP_IMPL_HPP_
 #define STRAP_CORE_MMKP_IMPL_HPP_
 
+#include "problem.hpp"
+
 namespace strap {
-
-template<typename PType, typename WType>
-const PType& Item<PType, WType>::p() const
-{
-  return *p_;
-}
-
-
-template<typename PType, typename WType> 
-const WType& Item<PType, WType>::w(const int k) const
-{
-  return *(w_ + k);
-}
-
-
-template<typename PType, typename WType>
-const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::w_begin() const
-{
-  return w_;
-}
-
-
-template<typename PType, typename WType>
-const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::w_end() const
-{
-  return w_ + d_;
-}
-
-
-template<typename PType, typename WType>
-const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::W::begin() const
-{
-  return item_.w_;
-}
-
-
-template<typename PType, typename WType>
-const typename Item<PType, WType>::WRandomAccessIterator Item<PType, WType>::W::end() const
-{
-  return item_.w_ + item_.d_;
-}
-
+namespace mmkp {
 
 template<typename PType, typename WType> 
 int Problem<PType, WType>::m() const
@@ -128,6 +89,7 @@ Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
   return Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);
 }
 
-}
+} // namespace mmkp  
+} // namespace strap
 
 #endif

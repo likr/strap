@@ -1,0 +1,11 @@
+CxxFiles[] =
+	core/item
+	core/problem
+	algorithm/enumerate
+
+LIB = $(StaticCXXLibrary libmmkp, $(CxxFiles))
+
+clean:
+	rm -f $(LIB)
+
+.SUBDIRS: core algorithm
