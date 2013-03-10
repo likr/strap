@@ -44,20 +44,7 @@ Problem* read(const std::string& filename)
 
 void dump(const Problem& problem)
 {
-  for (int k = 0; k < problem.d(); ++k) {
-    std::cout << problem.c(k) << ' ';
-  }
-  std::cout << std::endl;
-  for (int i = 0; i < problem.m(); ++i) {
-    std::cout << std::endl;
-    for (int j = 0; j < problem.k(i); ++j) {
-      std::cout << problem.p(i, j) << ' ';
-      for (int k = 0; k < problem.d(); ++k) {
-        std::cout << problem.w(i, j, k) << ' ';
-      }
-      std::cout << std::endl;
-    }
-  }
+  std::cout << problem;
 }
 
 

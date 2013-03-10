@@ -1,5 +1,5 @@
-#ifndef STRAP_CORE_MMKP_IMPL_HPP_
-#define STRAP_CORE_MMKP_IMPL_HPP_
+#ifndef STRAP_MMKP_CORE_PROBLEM_INL_HPP_
+#define STRAP_MMKP_CORE_PROBLEM_INL_HPP_
 
 #include "problem.hpp"
 

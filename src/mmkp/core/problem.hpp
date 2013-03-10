@@ -1,8 +1,10 @@
 #ifndef STRAP_MMKP_CORE_PROBLEM_HPP_
 #define STRAP_MMKP_CORE_PROBLEM_HPP_
 
+#include <iostream>
 #include <vector>
 #include "item.hpp"
+#include "index.hpp"
 
 namespace strap {
 namespace mmkp {
@@ -26,6 +28,7 @@ public:
   const CRandomAccessIterator c_begin() const;
   const CRandomAccessIterator c_end() const;
   Item<PType, WType> item(const int i, const int j) const;
+  Index index() const;
 
 
 private:
@@ -41,6 +44,10 @@ private:
 
 } // namespace mmkp
 } // namespace strap
+
+
+template<typename PType, typename WType>
+std::ostream& operator<<(std::ostream& out, const strap::mmkp::Problem<PType, WType>& problem);
 
 #include "problem-inl.hpp"
 #endif

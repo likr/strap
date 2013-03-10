@@ -7,10 +7,16 @@ namespace mmkp {
 template<typename PType, typename WType>
 class Problem;
 
+class Index;
+
 namespace algorithm {
 
 template<typename PType, typename WType>
 PType enumerate(const Problem<PType, WType>& problem);
+
+
+template<typename PType, typename WType>
+PType enumerate(const Problem<PType, WType>& problem, const Index& index);
 
 } // namespace algorithm
 } // namespace mmkp

@@ -1,5 +1,6 @@
 CxxFiles[] =
 	core/item
+	core/class
 	core/problem
 	algorithm/enumerate
 
