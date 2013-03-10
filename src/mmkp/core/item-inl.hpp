@@ -13,6 +13,13 @@ const PType& Item<PType, WType>::p() const
 }
 
 
+template<typename PType, typename WType>
+typename Item<PType, WType>::W Item<PType, WType>::w() const
+{
+  return Item<PType, WType>::W(*this);
+}
+
+
 template<typename PType, typename WType> 
 const WType& Item<PType, WType>::w(const int k) const
 {

@@ -4,6 +4,7 @@
 #include <string>
 #include "mmkp/core/problem.hpp"
 #include "mmkp/algorithm/enumerate.hpp"
+#include "mmkp/algorithm/surrogate_dual.hpp"
 
 
 typedef int PType;
@@ -52,9 +53,19 @@ int main(int argc, char* argv[])
 {
   std::string filename(argv[1]);
 
-  Problem* problem = read(filename);
+  std::unique_ptr<Problem> problem(read(filename));
 
   dump(*problem);
+
+  std::vector<double> u(problem->d());
+  auto upper_bound = strap::mmkp::algorithm::surrogate_dual(
+      *problem, problem->index(), u.begin());
+  std::cout << upper_bound << std::endl;
+  std::copy(
+      u.begin(), u.end(),
+      std::ostream_iterator<double>(std::cout, " "));
+  std::cout << std::endl;
+  std::cout << std::endl;
 
   auto start = std::chrono::system_clock::now();
   auto res = strap::mmkp::algorithm::enumerate(*problem);

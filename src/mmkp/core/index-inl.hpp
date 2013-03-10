@@ -21,6 +21,12 @@ Index::Index(const KInputIterator k_first, const KInputIterator k_last)
 }
 
 
+inline int Index::size() const
+{
+  return classes_.size();
+}
+
+
 inline Index::ClassIterator Index::begin() const
 {
   return classes_.begin();

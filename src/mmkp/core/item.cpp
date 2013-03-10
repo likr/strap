@@ -11,7 +11,7 @@ Item<PType, WType>::Item(const PType* p, const WType* w, const int d)
 
 
 template<typename PType, typename WType>
-Item<PType, WType>::W::W(Item<PType, WType>& item)
+Item<PType, WType>::W::W(const Item<PType, WType>& item)
   : item_(item)
 {
 }

@@ -14,11 +14,11 @@ public:
   class W
   {
   public:
-    W(Item& item);
+    explicit W(const Item& item);
     const WRandomAccessIterator begin() const;
     const WRandomAccessIterator end() const;
   private:
-    Item& item_;
+    const Item& item_;
   };
 
   Item(const PType* p, const WType* w, const int d);
@@ -27,7 +27,6 @@ public:
   const WType& w(const int k) const;
   const WRandomAccessIterator w_begin() const;
   const WRandomAccessIterator w_end() const;
-
 
 
 private:

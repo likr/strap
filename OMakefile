@@ -4,6 +4,11 @@ INCLUDES += $(absname src)
 
 LIBS[] +=
 	src/mmkp/libmmkp
+
+LDFLAGS[] +=
+	-lClp
+	-lCoinUtils
+
 EXECUTABLE = $(CXXProgram strapmain, src/main/main)
 
 .PHONY: clean

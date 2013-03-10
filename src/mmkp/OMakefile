@@ -3,6 +3,7 @@ CxxFiles[] =
 	core/class
 	core/problem
 	algorithm/enumerate
+	algorithm/lp_relaxation
 
 LIB = $(StaticCXXLibrary libmmkp, $(CxxFiles))
 
