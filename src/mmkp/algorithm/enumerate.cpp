@@ -1,7 +1,7 @@
 #include <vector>
-#include "enumerate.hpp"
+#include "common/core/index.hpp"
 #include "mmkp/core/problem.hpp"
-#include "mmkp/core/index.hpp"
+#include "enumerate.hpp"
 
 namespace strap {
 namespace mmkp {

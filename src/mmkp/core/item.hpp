@@ -14,7 +14,7 @@ public:
   class W
   {
   public:
-    explicit W(const Item& item);
+    W(const Item& item);
     const WRandomAccessIterator begin() const;
     const WRandomAccessIterator end() const;
   private:

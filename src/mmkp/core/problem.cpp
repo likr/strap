@@ -1,3 +1,4 @@
+#include "common/core/index.hpp"
 #include "problem.hpp"
 
 namespace strap {

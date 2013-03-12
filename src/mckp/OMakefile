@@ -1,0 +1,13 @@
+FILES[] =
+	core/problem
+	algorithm/dominate
+	algorithm/lp_dominate
+	algorithm/lp_relaxation
+
+LIB = $(StaticCXXLibrary libmckp, $(FILES))
+StaticCXXLibrary(libmckp-debug, $(addsuffix -debug, $(FILES)))
+
+clean:
+	rm -f $(LIB)
+
+.SUBDIRS: core algorithm

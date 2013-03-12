@@ -1,6 +1,5 @@
 CxxFiles[] =
 	core/item
-	core/class
 	core/problem
 	algorithm/enumerate
 	algorithm/lp_relaxation

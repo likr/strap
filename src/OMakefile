@@ -1,1 +1,1 @@
-.SUBDIRS: mmkp main
+.SUBDIRS: common mckp mmkp main

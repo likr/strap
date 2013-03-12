@@ -1,8 +1,16 @@
+.SCANNER: %-debug.o: %.cpp
+	$(CXX) -MM $<
+
+%-debug.o: %.cpp
+	$(CXX) $(CFLAGS) -c -o $@ $<
+
 CXX = clang++
 CXXFLAGS += -Wall -O3 -std=c++11 -stdlib=libc++
 INCLUDES += $(absname src)
 
 LIBS[] +=
+	src/common/libcommon
+	src/mckp/libmckp
 	src/mmkp/libmmkp
 
 LDFLAGS[] +=

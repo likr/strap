@@ -2,11 +2,16 @@
 #define STRAP_MMKP_ALGORITHM_LP_RELAXATION_HPP_
 
 #include <coin/ClpSimplex.hpp>
-#include "mmkp/core/index.hpp"
-#include "mmkp/core/problem.hpp"
 
 namespace strap {
+
+class Index;
+
 namespace mmkp {
+
+template<typename PType, typename WType>
+class Problem;
+
 namespace algorithm {
 
 typedef ClpSimplex LpRelaxationProblem;

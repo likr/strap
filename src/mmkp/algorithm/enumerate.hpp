@@ -2,12 +2,13 @@
 #define STRAP_MMKP_ALGORITHM_ENUMERATE_HPP_
 
 namespace strap {
+
+class Index;
+
 namespace mmkp {
 
 template<typename PType, typename WType>
 class Problem;
-
-class Index;
 
 namespace algorithm {
 

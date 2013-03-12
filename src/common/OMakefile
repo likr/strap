@@ -1,0 +1,9 @@
+FILES[] =
+	core/class
+
+LIB = $(StaticCXXLibrary libcommon, $(FILES))
+
+clean:
+	rm -f $(LIB)
+
+.SUBDIRS: core

@@ -4,9 +4,11 @@
 #include <iostream>
 #include <vector>
 #include "item.hpp"
-#include "index.hpp"
 
 namespace strap {
+
+class Index;
+
 namespace mmkp {
 
 template<typename PType, typename WType> 

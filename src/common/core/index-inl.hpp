@@ -1,13 +1,12 @@
-#ifndef STRAP_MMKP_CORE_INDEX_INL_HPP_
-#define STRAP_MMKP_CORE_INDEX_INL_HPP_
+#ifndef STRAP_COMMON_CORE_INDEX_INL_HPP_
+#define STRAP_COMMON_CORE_INDEX_INL_HPP_
 
 #include <iterator>
 #include "class.hpp"
 #include "index.hpp"
 
 namespace strap {
-namespace mmkp {
-  
+
 template<typename KInputIterator>
 Index::Index(const KInputIterator k_first, const KInputIterator k_last)
 {
@@ -44,7 +43,6 @@ inline const Class& Index::at(const int i_index) const
   return classes_[i_index];
 }
 
-} // namespace mmkp
 } // namespace strap
 
 #endif

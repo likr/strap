@@ -1,11 +1,10 @@
-#ifndef STRAP_MMKP_CORE_INDEX_HPP_
-#define STRAP_MMKP_CORE_INDEX_HPP_
+#ifndef STRAP_COMMON_CORE_INDEX_HPP_
+#define STRAP_COMMON_CORE_INDEX_HPP_
 
 #include <vector>
 #include "class.hpp"
 
 namespace strap {
-namespace mmkp {
 
 class Index
 {
@@ -23,7 +22,6 @@ private:
   std::vector<Class> classes_;
 };
 
-} // namespace mmkp
 } // namespace strap
 
 #include "index-inl.hpp"

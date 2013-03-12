@@ -4,6 +4,9 @@
 #include "mmkp/core/problem.hpp"
 
 namespace strap {
+
+class Index;
+
 namespace mmkp {
 namespace algorithm {
 

@@ -1,3 +1,5 @@
+#include "common/core/index.hpp"
+#include "mmkp/core/problem.hpp"
 #include "lp_relaxation.hpp"
 
 namespace strap {
