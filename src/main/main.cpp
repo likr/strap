@@ -5,6 +5,7 @@
 #include "mckp/algorithm/lp_relaxation.hpp"
 #include "mmkp/core/problem.hpp"
 #include "mmkp/algorithm/enumerate.hpp"
+#include "mmkp/algorithm/entropy.hpp"
 #include "mmkp/algorithm/surrogate_constraints.hpp"
 #include "mmkp/algorithm/surrogate_dual.hpp"
 
@@ -76,7 +77,30 @@ int main(int argc, char* argv[])
     new strap::mckp::algorithm::LpRelaxationProblem<int, double>(
         *mck_problem, problem->index());
   std::cout << lmck_problem->solve(mck_problem->c()) << std::endl;;
+  double alpha = lmck_problem->alpha();
+  std::cout << alpha << std::endl;
 
+  auto* upper_bounds = problem->data<PType>();
+  for (const auto& klass : problem->index()) {
+    const int i = klass.i();
+    auto sub_lmck_problem(*lmck_problem);
+
+    sub_lmck_problem.remove(i);
+    for (const int j : klass) {
+      double sub_c = mck_problem->c() - mck_problem->w(i, j);
+      upper_bounds->get(i, j) = mck_problem->p(i, j) + sub_lmck_problem.solve(sub_c);
+    }
+  }
+
+  auto* entropy = strap::mmkp::algorithm::entropy<int>(
+      *upper_bounds, upper_bound, 0, problem->index());
+  for (const auto& klass : problem->index()) {
+    const int i = klass.i();
+    for (const int j : klass) {
+      std::cout << i << ", " << j << ", " << upper_bounds->get(i, j) << std::endl;
+    }
+    std::cout << entropy->get(i) << std::endl << std::endl;
+  }
 
   auto start = std::chrono::system_clock::now();
   auto res = strap::mmkp::algorithm::enumerate(*problem);

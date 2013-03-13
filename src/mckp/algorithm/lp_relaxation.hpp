@@ -18,7 +18,11 @@ class LpRelaxationProblem
 {
 public:
   LpRelaxationProblem(const Problem<PType, WType>& problem, const Index& index);
+  PType solve() const;
   PType solve(const WType c) const;
+  double alpha() const;
+  double alpha(const WType c) const;
+  void remove(const int i);
 
 
 private:
@@ -26,6 +30,11 @@ private:
   std::vector<WType> w_;
   std::vector<int> i_;
   std::vector<int> j_;
+  std::vector<PType> base_p_;
+  std::vector<WType> base_w_;
+  std::vector<int> base_i_;
+  std::vector<int> base_j_;
+  WType c_;
 };
 
 } // namespace algorithm

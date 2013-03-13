@@ -1,12 +1,14 @@
 #ifndef STRAP_MMKP_CORE_PROBLEM_INL_HPP_
 #define STRAP_MMKP_CORE_PROBLEM_INL_HPP_
 
+#include "common/core/indexed_data.hpp"
+#include "common/core/class_indexed_data.hpp"
 #include "problem.hpp"
 
 namespace strap {
 namespace mmkp {
 
-template<typename PType, typename WType> 
+template<typename PType, typename WType>
 int Problem<PType, WType>::m() const
 {
   return m_;
@@ -20,7 +22,7 @@ int Problem<PType, WType>::n() const
 }
 
 
-template<typename PType, typename WType> 
+template<typename PType, typename WType>
 int Problem<PType, WType>::d() const
 {
   return d_;
@@ -89,7 +91,23 @@ Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
   return Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);
 }
 
-} // namespace mmkp  
+
+template<typename PType, typename WType>
+template<typename T>
+IndexedData<T>* Problem<PType, WType>::data() const
+{
+  return new IndexedData<T>(k_.begin(), k_.end());
+}
+
+
+template<typename PType, typename WType>
+template<typename T>
+ClassIndexedData<T>* Problem<PType, WType>::class_data() const
+{
+  return new ClassIndexedData<T>(m_);
+}
+
+} // namespace mmkp
 } // namespace strap
 
 #endif
