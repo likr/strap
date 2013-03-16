@@ -17,7 +17,7 @@ IndexedData<T>::IndexedData(
   }
   data_.resize(offset_.back());
   for (int i = offset_.size() - 1; i >= 0; --i) {
-    offset_[i] = offset_[i] - 1;
+    offset_[i] = offset_[i - 1];
   }
   offset_[0] = 0;
 }

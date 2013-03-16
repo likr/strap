@@ -36,6 +36,7 @@ public:
   Index index() const;
   template<typename T> IndexedData<T>* data() const;
   template<typename T> ClassIndexedData<T>* class_data() const;
+  static Problem<PType, WType>* read(std::istream& in);
 
 
 private:

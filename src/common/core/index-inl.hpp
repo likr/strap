@@ -26,13 +26,25 @@ inline int Index::size() const
 }
 
 
-inline Index::ClassIterator Index::begin() const
+inline Index::ClassIterator Index::begin()
 {
   return classes_.begin();
 }
 
 
-inline Index::ClassIterator Index::end() const
+inline Index::ClassConstIterator Index::begin() const
+{
+  return classes_.begin();
+}
+
+
+inline Index::ClassIterator Index::end()
+{
+  return classes_.end();
+}
+
+
+inline Index::ClassConstIterator Index::end() const
 {
   return classes_.end();
 }

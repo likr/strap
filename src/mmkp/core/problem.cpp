@@ -24,6 +24,38 @@ Index Problem<PType, WType>::index() const
   return Index(k_.begin(), k_.end());
 }
 
+
+template<typename PType, typename WType>
+Problem<PType, WType>* Problem<PType, WType>::read(std::istream& in)
+{
+  int m;
+  in >> m;
+  std::vector<int> k(m);
+  for (int i = 0; i < m; ++i) {
+    in >> k[i];
+  }
+  int d;
+  in >> d;
+
+  auto* problem = new Problem<PType, WType>(k, d);
+
+  for (int k = 0; k < d; ++k) {
+    in >> problem->c(k);
+  }
+
+  for (int i = 0; i < m; ++i) {
+    for (int j = 0; j < problem->k(i); ++j) {
+      in >> problem->p(i, j);
+      for (int k = 0; k < d; ++k) {
+        in >> problem->w(i, j, k);
+      }
+    }
+  }
+
+  return problem;
+}
+
+
 template class Problem<int, int>;
 template class Problem<double, double>;
 

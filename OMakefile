@@ -18,6 +18,7 @@ LDFLAGS[] +=
 	-lCoinUtils
 
 EXECUTABLE = $(CXXProgram strapmain, src/main/main)
+CXXProgram(entropy, src/main/entropy)
 
 .PHONY: clean
 .SUBDIRS: src
