@@ -50,6 +50,12 @@ inline Class::JIterator Class::end()
   return js_.end();
 }
 
+
+inline int Class::operator[](const int index) const
+{
+  return js_[index];
+}
+
 } // namespace strap
 
 #endif

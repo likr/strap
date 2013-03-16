@@ -160,10 +160,9 @@ void LpRelaxationProblem<PType, WType>::remove(const int i)
     if (i_[l] == i) {
       reduced_p = p_[l] - p_[l - 1];
       reduced_w = w_[l] - w_[l - 1];
-    } else {
-      p_[l] -= reduced_p;
-      w_[l] -= reduced_w;
     }
+    p_[l] -= reduced_p;
+    w_[l] -= reduced_w;
   }
 
   int index;

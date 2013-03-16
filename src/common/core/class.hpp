@@ -24,6 +24,7 @@ public:
   JConstIterator end() const;
   JIterator end();
   void filter(const std::function<bool (int)>& pred);
+  int operator[](const int index) const;
 
 
 private:

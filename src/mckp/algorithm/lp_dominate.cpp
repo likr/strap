@@ -19,29 +19,42 @@ void lp_dominate(const Problem<PType, WType>& problem, Class& klass)
 
   std::vector<bool> stencil(klass.size(), false);
   const int i = klass.i();
-  const auto it_stop = klass.end() - 2;
+  bool removed;
 
-  for (auto it1 = klass.begin(); it1 != it_stop; ++it1) {
-    const int j0 = *it1;
-    const PType p0 = problem.p(i, j0);
-    const WType w0 = problem.w(i, j0);
-    const int j1 = *(it1 + 1);
-    const PType p1 = problem.p(i, j1);
-    const WType w1 = problem.w(i, j1);
+  do {
+    removed = false;
+    const auto first = stencil.begin();
+    const auto last = stencil.end();
 
-    for (auto it2 = it1 + 2; it2 != klass.end(); ++it2) {
-      const int j2 = *it2;
+    for (auto it0 = first; it0 != last; ++it0) {
+      const auto it1 = std::find(it0 + 1, last, false);
+      if (it1 + 1 == last) {
+        break;
+      }
+      const auto it2 = std::find(it1 + 1, last, false);
+      if (it2 == last) {
+        break;
+      }
+
+      const int j0 = klass[std::distance(first, it0)];
+      const int j1 = klass[std::distance(first, it1)];
+      const int j2 = klass[std::distance(first, it2)];
+
+      const PType p0 = problem.p(i, j0);
+      const WType w0 = problem.w(i, j0);
+      const PType p1 = problem.p(i, j1);
+      const WType w1 = problem.w(i, j1);
       const PType p2 = problem.p(i, j2);
       const WType w2 = problem.w(i, j2);
       const double slope1 = double(p1 - p0) / (w1 - w0);
       const double slope2 = double(p2 - p1) / (w2 - w1);
 
       if (slope1 <= slope2) {
-        stencil[std::distance(klass.begin(), it1) + 1] = true;
-        break;
+        *it1 = true;
+        removed = true;
       }
     }
-  }
+  } while (removed);
 
   int l = 0;
   klass.filter(
