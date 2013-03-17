@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include <vector>
 #include "common/core/class.hpp"
 #include "common/core/index.hpp"
@@ -38,7 +39,7 @@ strap::IndexedData<PType>* calculate_upper_bounds(
 }
 
 
-void parameterized_entropy(const Problem& problem, const std::string& ofilename)
+void parameterized_entropy(const Problem& problem, const std::string& ofilename, double e)
 {
   const auto index = problem.index();
 
@@ -64,7 +65,7 @@ void parameterized_entropy(const Problem& problem, const std::string& ofilename)
           });
     }
     std::unique_ptr<strap::ClassIndexedData<double> > entropy(
-        strap::mmkp::algorithm::entropy(*upper_bounds, upper_bound, lower_bound, index));
+        strap::mmkp::algorithm::entropy(*upper_bounds, upper_bound, lower_bound, index, e));
     std::transform(
         index.begin(), index.end(),
         std::ostream_iterator<double>(ofs, ","),
@@ -80,9 +81,16 @@ int main(int argc, char* argv[])
 {
   std::string ifilename(argv[1]);
   std::string ofilename(argv[2]);
+  double e;
+  if (argc == 4) {
+    std::string estr(argv[3]);
+    std::istringstream(estr) >> e;
+  } else {
+    e = strap::mmkp::algorithm::ENTROPY_E;
+  }
 
   std::ifstream in(ifilename.c_str());
   std::unique_ptr<Problem> problem(Problem::read(in));
 
-  parameterized_entropy(*problem, ofilename);
+  parameterized_entropy(*problem, ofilename, e);
 }

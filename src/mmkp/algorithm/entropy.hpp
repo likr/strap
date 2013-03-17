@@ -11,12 +11,16 @@ namespace mmkp {
 
 namespace algorithm {
 
+const double ENTROPY_E = 10.017;
+
+
 template<typename PType>
 double difficulty_entropy(
     const IndexedData<PType>& upper_bounds,
     const PType upper_bound,
     const PType lower_bound,
-    const Index& index);
+    const Index& index,
+    const double e = ENTROPY_E);
 
 
 template<typename PType>
@@ -24,7 +28,8 @@ ClassIndexedData<double>* entropy(
     const IndexedData<PType>& upper_bounds,
     const PType upper_bound,
     const PType lower_bound,
-    const Index& index);
+    const Index& index,
+    const double e = ENTROPY_E);
 
 } // namespace algorithm
 } // namespace mmkp

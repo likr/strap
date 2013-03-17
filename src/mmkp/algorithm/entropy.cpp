@@ -15,12 +15,12 @@ template<class PType>
 double theta_i(
     const PType upper_bound,
     const PType lower_bound,
-    const PType fixed_upper_bound)
+    const PType fixed_upper_bound,
+    const double e)
 {
-  const double E = -10.017;
   const double delta =
     double(upper_bound - fixed_upper_bound) / (upper_bound - lower_bound);
-  const double phi = std::exp(E * delta) / 2;
+  const double phi = std::exp((-e) * delta) / 2;
   return phi / (1 - phi);
 }
 
@@ -30,7 +30,8 @@ double class_entropy(
     const IndexedData<PType>& upper_bounds,
     const PType upper_bound,
     const PType lower_bound,
-    const Class& klass)
+    const Class& klass,
+    const double e)
 {
   const int i = klass.i();
   const int k_i = klass.size();
@@ -40,7 +41,7 @@ double class_entropy(
       klass.begin(), klass.end(),
       theta.begin(),
       [&](const int j) {
-        return theta_i(upper_bound, lower_bound, upper_bounds.get(i, j));
+        return theta_i(upper_bound, lower_bound, upper_bounds.get(i, j), e);
       });
 
   double sum_theta = std::accumulate(theta.begin(), theta.end(), 0);
@@ -59,7 +60,8 @@ ClassIndexedData<double>* entropy(
     const IndexedData<PType>& upper_bounds,
     const PType upper_bound,
     const PType lower_bound,
-    const Index& index)
+    const Index& index,
+    const double e)
 {
   auto* result = new ClassIndexedData<double>(upper_bounds.m());
 
@@ -67,7 +69,7 @@ ClassIndexedData<double>* entropy(
     const int i = klass.i();
 
     result->get(i) =
-      class_entropy(upper_bounds, upper_bound, lower_bound, klass);
+      class_entropy(upper_bounds, upper_bound, lower_bound, klass, e);
   }
 
   return result;
@@ -79,13 +81,14 @@ double difficulty_entropy(
     const IndexedData<PType>& upper_bounds,
     const PType upper_bound,
     const PType lower_bound,
-    const Index& index)
+    const Index& index,
+    const double e)
 {
   return std::accumulate(
       index.begin(), index.end(), 0.0,
       [&](const double acc, const Class& klass) -> double {
         return acc + class_entropy(
-          upper_bounds, upper_bound, lower_bound, klass);
+          upper_bounds, upper_bound, lower_bound, klass, e);
       });
 }
 
@@ -94,22 +97,26 @@ template ClassIndexedData<double>* entropy(
     const IndexedData<int>& upper_bounds,
     const int upper_bound,
     const int lower_bound,
-    const Index& index);
+    const Index& index,
+    const double e);
 template ClassIndexedData<double>* entropy(
     const IndexedData<double>& upper_bounds,
     const double upper_bound,
     const double lower_bound,
-    const Index& index);
+    const Index& index,
+    const double e);
 template double difficulty_entropy(
     const IndexedData<int>& upper_bounds,
     const int upper_bound,
     const int lower_bound,
-    const Index& index);
+    const Index& index,
+    const double e);
 template double difficulty_entropy(
     const IndexedData<double>& upper_bounds,
     const double upper_bound,
     const double lower_bound,
-    const Index& index);
+    const Index& index,
+    const double e);
 
 } // namespace algorithm  
 } // namespace mmkp
