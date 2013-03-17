@@ -6,9 +6,7 @@
 #include "mckp/algorithm/lp_relaxation.hpp"
 #include "mmkp/core/problem.hpp"
 #include "mmkp/algorithm/enumerate.hpp"
-#include "mmkp/algorithm/entropy.hpp"
-#include "mmkp/algorithm/surrogate_constraints.hpp"
-#include "mmkp/algorithm/surrogate_dual.hpp"
+#include "mmkp/algorithm/normalize.hpp"
 
 
 typedef int PType;
@@ -22,11 +20,12 @@ int main(int argc, char* argv[])
 
   std::ifstream in(filename.c_str());
   std::unique_ptr<Problem> problem(Problem::read(in));
+  strap::mmkp::algorithm::normalize(*problem);
 
   std::cout << *problem << std::endl;
 
   auto start = std::chrono::system_clock::now();
-  auto res = strap::mmkp::algorithm::enumerate(*problem);
+  auto res = problem->p_offset() + strap::mmkp::algorithm::enumerate(*problem);
   auto stop = std::chrono::system_clock::now();
   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
   std::cout << res << ' ' << time.count() << std::endl;

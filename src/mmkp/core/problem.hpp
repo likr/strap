@@ -32,6 +32,8 @@ public:
   WType& c(const int k);
   const CRandomAccessIterator c_begin() const;
   const CRandomAccessIterator c_end() const;
+  PType& p_offset();
+  const PType& p_offset() const;
   Item<PType, WType> item(const int i, const int j) const;
   Index index() const;
   template<typename T> IndexedData<T>* data() const;
@@ -48,6 +50,7 @@ private:
   int m_;
   int n_;
   int d_;
+  PType p_offset_;
 };
 
 } // namespace mmkp

@@ -86,6 +86,20 @@ const typename Problem<PType, WType>::CRandomAccessIterator Problem<PType, WType
 
 
 template<typename PType, typename WType>
+PType& Problem<PType, WType>::p_offset()
+{
+  return p_offset_;
+}
+
+
+template<typename PType, typename WType>
+const PType& Problem<PType, WType>::p_offset() const
+{
+  return p_offset_;
+}
+
+
+template<typename PType, typename WType>
 Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
 {
   return Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);

@@ -4,6 +4,7 @@ CxxFiles[] =
 	algorithm/entropy
 	algorithm/enumerate
 	algorithm/lp_relaxation
+	algorithm/normalize
 
 LIB = $(StaticCXXLibrary libmmkp, $(CxxFiles))
 
