@@ -22,7 +22,7 @@ strap::IndexedData<PType>* calculate_upper_bounds(
     const strap::mckp::Problem<int, double>& mck_problem,
     const strap::mckp::algorithm::LpRelaxationProblem<int, double>& lmck_problem)
 {
-  auto* upper_bounds = problem.data<PType>();
+  auto* upper_bounds = problem.data(PType(0));
 
   for (const auto& klass : index) {
     const int i = klass.i();

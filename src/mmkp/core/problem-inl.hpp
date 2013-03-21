@@ -108,17 +108,17 @@ Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
 
 template<typename PType, typename WType>
 template<typename T>
-IndexedData<T>* Problem<PType, WType>::data() const
+IndexedData<T>* Problem<PType, WType>::data(const T init) const
 {
-  return new IndexedData<T>(k_.begin(), k_.end());
+  return new IndexedData<T>(k_.begin(), k_.end(), init);
 }
 
 
 template<typename PType, typename WType>
 template<typename T>
-ClassIndexedData<T>* Problem<PType, WType>::class_data() const
+ClassIndexedData<T>* Problem<PType, WType>::class_data(const T init) const
 {
-  return new ClassIndexedData<T>(m_);
+  return new ClassIndexedData<T>(m_, init);
 }
 
 } // namespace mmkp

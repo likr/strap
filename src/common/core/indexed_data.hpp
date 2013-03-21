@@ -11,6 +11,8 @@ class IndexedData
 public:
   template<typename KInputIterator>
   IndexedData(const KInputIterator k_first, const KInputIterator k_last);
+  template<typename KInputIterator>
+  IndexedData(const KInputIterator k_first, const KInputIterator k_last, const T& init);
 
   int m() const;
   int n() const;

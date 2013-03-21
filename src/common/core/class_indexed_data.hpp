@@ -10,6 +10,7 @@ class ClassIndexedData
 {
 public:
   ClassIndexedData(const int m);
+  ClassIndexedData(const int m, const T& init);
 
   int m() const;
   T& get(const int i);

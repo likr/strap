@@ -13,6 +13,13 @@ ClassIndexedData<T>::ClassIndexedData(const int m)
 
 
 template<typename T>
+ClassIndexedData<T>::ClassIndexedData(const int m, const T& init)
+  : data_(m)
+{
+}
+
+
+template<typename T>
 int ClassIndexedData<T>::m() const
 {
   return data_.size();

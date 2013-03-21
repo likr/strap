@@ -36,8 +36,8 @@ public:
   const PType& p_offset() const;
   Item<PType, WType> item(const int i, const int j) const;
   Index index() const;
-  template<typename T> IndexedData<T>* data() const;
-  template<typename T> ClassIndexedData<T>* class_data() const;
+  template<typename T> IndexedData<T>* data(const T init) const;
+  template<typename T> ClassIndexedData<T>* class_data(const T init) const;
   static Problem<PType, WType>* read(std::istream& in);
 
 

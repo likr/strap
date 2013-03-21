@@ -4,6 +4,7 @@
 namespace strap {
 
 class Index;
+template<typename T> class ClassIndexedData;
 
 namespace mmkp {
 
@@ -13,11 +14,11 @@ class Problem;
 namespace algorithm {
 
 template<typename PType, typename WType>
-PType enumerate(const Problem<PType, WType>& problem);
+ClassIndexedData<int>* enumerate(const Problem<PType, WType>& problem);
 
 
 template<typename PType, typename WType>
-PType enumerate(const Problem<PType, WType>& problem, const Index& index);
+ClassIndexedData<int>* enumerate(const Problem<PType, WType>& problem, const Index& index);
 
 } // namespace algorithm
 } // namespace mmkp

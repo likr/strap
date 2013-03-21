@@ -3,6 +3,8 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include "common/core/index.hpp"
+#include "common/core/class_indexed_data.hpp"
 #include "mckp/algorithm/lp_relaxation.hpp"
 #include "mmkp/core/problem.hpp"
 #include "mmkp/algorithm/enumerate.hpp"
@@ -25,8 +27,17 @@ int main(int argc, char* argv[])
   std::cout << *problem << std::endl;
 
   auto start = std::chrono::system_clock::now();
-  auto res = problem->p_offset() + strap::mmkp::algorithm::enumerate(*problem);
+  const auto* res = strap::mmkp::algorithm::enumerate(*problem);
   auto stop = std::chrono::system_clock::now();
   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-  std::cout << res << ' ' << time.count() << std::endl;
+
+  PType obj = problem->p_offset();
+  for (const auto& klass : problem->index()) {
+    const int i = klass.i();
+    const int j = res->get(i);
+    obj += problem->p(i, j);
+    std::cout << "x[" << i << "] = " << j << std::endl;
+  }
+  std::cout << "optimal value: " << obj << std::endl;
+  std::cout << "calculation time: " << time.count() << std::endl;
 }

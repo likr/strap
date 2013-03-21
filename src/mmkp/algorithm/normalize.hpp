@@ -26,4 +26,5 @@ Problem<PType, WType>* normalize_copy(
 } // namespace algorithm
 } // namespace mmkp
 } // namespace strap
+
 #endif /* end of include guard */

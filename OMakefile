@@ -1,29 +1,41 @@
-.SCANNER: %-debug.o: %.cpp
-	$(CXX) -MM $<
-
-%-debug.o: %.cpp
-	$(CXX) $(CFLAGS) -c -o $@ $<
+CREATE_SUBDIRS = true
 
 CXX = clang++
-CXXFLAGS += -Wall -O3 -std=c++11 -stdlib=libc++
+CXXFLAGS += -Wall -std=c++11 -stdlib=libc++
 INCLUDES += $(absname src)
 
-LIBS[] +=
-	src/common/libcommon
-	src/mckp/libmckp
-	src/mmkp/libmmkp
+section
+	CXXFLAGS += -g
+	vmount(src, debug)
+	.SUBDIRS: debug
+
+section
+	CXXFLAGS += -O3
+	vmount(src, release)
+	.SUBDIRS: release
 
 LDFLAGS[] +=
 	-lClp
 	-lCoinUtils
 
-EXECUTABLE = $(CXXProgram strapmain, src/main/main)
-CXXProgram(entropy, src/main/entropy)
+section
+	LIBS[] +=
+		debug/common/libcommon
+		debug/mckp/libmckp
+		debug/mmkp/libmmkp
+	debug: $(CXXProgram strapmain-debug, debug/main/main)
+
+section
+	LIBS[] +=
+		release/common/libcommon
+		release/mckp/libmckp
+		release/mmkp/libmmkp
+	release: $(CXXProgram strapmain, release/main/main)
+
+CXXProgram(entropy, release/main/entropy)
 
 .PHONY: clean
-.SUBDIRS: src
-.DEFAULT: $(EXECUTABLE)
+.DEFAULT: release
 
 clean:
-	rm -f $(EXECUTABLE)
-
+	rm -rf debug release

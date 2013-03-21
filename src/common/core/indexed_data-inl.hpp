@@ -24,6 +24,25 @@ IndexedData<T>::IndexedData(
 
 
 template<typename T>
+template<typename KInputIterator>
+IndexedData<T>::IndexedData(
+    const KInputIterator k_first,
+    const KInputIterator k_last,
+    const T& init)
+  : offset_(k_first, k_last)
+{
+  for (int i = 0; i < offset_.size() - 1; ++i) {
+    offset_[i + 1] += offset_[i];
+  }
+  data_.resize(offset_.back());
+  for (int i = offset_.size() - 1; i >= 0; --i) {
+    offset_[i] = offset_[i - 1];
+  }
+  offset_[0] = 0;
+}
+
+
+template<typename T>
 int IndexedData<T>::m() const
 {
   return offset_.size();
