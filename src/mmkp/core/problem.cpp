@@ -1,4 +1,5 @@
 #include "common/core/index.hpp"
+#include "common/core/constraint_index.hpp"
 #include "problem.hpp"
 
 namespace strap {
@@ -22,6 +23,13 @@ template<typename PType, typename WType>
 Index Problem<PType, WType>::index() const
 {
   return Index(k_.begin(), k_.end());
+}
+
+
+template<typename PType, typename WType>
+ConstraintIndex Problem<PType, WType>::constraint_index() const
+{
+  return ConstraintIndex(d_);
 }
 
 

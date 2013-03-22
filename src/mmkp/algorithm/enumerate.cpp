@@ -1,5 +1,6 @@
 #include <vector>
 #include "common/core/index.hpp"
+#include "common/core/constraint_index.hpp"
 #include "common/core/class_indexed_data.hpp"
 #include "mmkp/core/problem.hpp"
 #include "enumerate.hpp"
@@ -15,11 +16,12 @@ struct Solver
 public:
   Solver(const Problem<PType, WType>& problem, const Index& index)
     : problem_(problem), index_(index),
+      constraint_index_(problem.constraint_index()),
       bottom_(problem.m() - 1), d_(problem.d()),
       lower_bound_(0)
   {
     c_stack_ = new WType[problem.m() * problem.d()];
-    for (int k = 0; k < d_; ++k) {
+    for (const int k : constraint_index_) {
       c_stack_[k] = problem.c(k);
     }
     solution_ = problem.class_data(0);
@@ -86,7 +88,7 @@ private:
       for (auto j : klass) {
         const Item<PType, WType> item = problem_.item(i, j);
         bool is_feasible = true;
-        for (int k = 0; k < d_; ++k) {
+        for (const int k : constraint_index_) {
           new_c[k] = c[k] - item.w(k);
           if (new_c[k] < 0) {
             is_feasible = false;
@@ -103,7 +105,8 @@ private:
   }
 
   const Problem<PType, WType>& problem_;
-  const Index& index_;
+  const Index index_;
+  const ConstraintIndex constraint_index_;
   int bottom_;
   int d_;
   WType* c_stack_;

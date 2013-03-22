@@ -1,4 +1,5 @@
 FILES[] =
+	core/constraint_index
 	core/class
 
 LIB = $(StaticCXXLibrary libcommon, $(FILES))

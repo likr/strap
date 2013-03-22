@@ -3,15 +3,18 @@
 
 #include <iostream>
 #include <vector>
-#include "item.hpp"
 
 namespace strap {
 
 class Index;
+class ConstraintIndex;
 template<typename T> class IndexedData;
 template<typename T> class ClassIndexedData;
 
 namespace mmkp {
+
+template<typename PType, typename WType> class Item;
+
 
 template<typename PType, typename WType> 
 class Problem
@@ -36,6 +39,7 @@ public:
   const PType& p_offset() const;
   Item<PType, WType> item(const int i, const int j) const;
   Index index() const;
+  ConstraintIndex constraint_index() const;
   template<typename T> IndexedData<T>* data(const T init) const;
   template<typename T> ClassIndexedData<T>* class_data(const T init) const;
   static Problem<PType, WType>* read(std::istream& in);

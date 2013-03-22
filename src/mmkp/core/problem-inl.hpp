@@ -3,6 +3,7 @@
 
 #include "common/core/indexed_data.hpp"
 #include "common/core/class_indexed_data.hpp"
+#include "item.hpp"
 #include "problem.hpp"
 
 namespace strap {
