@@ -4,6 +4,8 @@
 #include <vector>
 
 namespace strap {
+
+template<typename T> class IndexedData;
 namespace mckp {
 
 template<typename PType, typename WType>
@@ -21,6 +23,7 @@ public:
   WType& w(const int i, const int j);
   const WType& c() const;
   WType& c();
+  template<typename T> IndexedData<T>* data(const T init) const;
 
 
 private:

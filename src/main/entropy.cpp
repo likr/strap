@@ -6,6 +6,7 @@
 #include "common/core/class.hpp"
 #include "common/core/index.hpp"
 #include "mckp/algorithm/lp_relaxation.hpp"
+#include "mckp/algorithm/upper_bound.hpp"
 #include "mmkp/core/problem.hpp"
 #include "mmkp/algorithm/entropy.hpp"
 #include "mmkp/algorithm/surrogate_constraints.hpp"
@@ -15,28 +16,6 @@
 typedef int PType;
 typedef int WType;
 typedef strap::mmkp::Problem<PType, WType> Problem;
-
-
-strap::IndexedData<PType>* calculate_upper_bounds(
-    const Problem& problem, const strap::Index& index,
-    const strap::mckp::Problem<int, double>& mck_problem,
-    const strap::mckp::algorithm::LpRelaxationProblem<int, double>& lmck_problem)
-{
-  auto* upper_bounds = problem.data(PType(0));
-
-  for (const auto& klass : index) {
-    const int i = klass.i();
-    auto sub_lmck_problem(lmck_problem);
-
-    sub_lmck_problem.remove(i);
-    for (const int j : klass) {
-      double sub_c = mck_problem.c() - mck_problem.w(i, j);
-      upper_bounds->get(i, j) = mck_problem.p(i, j) + sub_lmck_problem.solve(sub_c);
-    }
-  }
-
-  return upper_bounds;
-}
 
 
 void parameterized_entropy(const Problem& problem, const std::string& ofilename, double e)
@@ -49,11 +28,18 @@ void parameterized_entropy(const Problem& problem, const std::string& ofilename,
 
   std::unique_ptr<strap::mckp::Problem<int, double> > mck_problem(
       strap::mmkp::algorithm::surrogate_constraints(problem, index, u.begin()));
-  std::unique_ptr<strap::mckp::algorithm::LpRelaxationProblem<int, double> > lmck_problem(
-      new strap::mckp::algorithm::LpRelaxationProblem<int, double>(*mck_problem, index));
 
-  const std::unique_ptr<strap::IndexedData<PType> > upper_bounds(calculate_upper_bounds(
-        problem, index, *mck_problem, *lmck_problem));
+  const std::unique_ptr<strap::IndexedData<PType> > upper_bounds(
+      strap::mckp::algorithm::dkw_upper_bounds(*mck_problem, index));
+
+  for (const auto& klass : index) {
+    const int i = klass.i();
+    std::cout << i << std::endl;
+    for (const int j : klass) {
+      std::cout << upper_bounds->get(i, j) << std::endl;;
+    }
+    std::cout << std::endl;
+  }
 
   std::ofstream ofs(ofilename.c_str());
   for (int lower_bound = 0; lower_bound < upper_bound; ++lower_bound) {

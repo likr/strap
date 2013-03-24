@@ -6,6 +6,7 @@
 namespace strap {
 
 class Index;
+template<typename T> class ClassIndexedData;
 
 namespace mckp {
 
@@ -18,8 +19,11 @@ class LpRelaxationProblem
 {
 public:
   LpRelaxationProblem(const Problem<PType, WType>& problem, const Index& index);
+  int m() const;
   PType solve() const;
   PType solve(const WType c) const;
+  ClassIndexedData<int>* solve_with_solution() const;
+  ClassIndexedData<int>* solve_with_solution(const WType c) const;
   double alpha() const;
   double alpha(const WType c) const;
   void remove(const int i);

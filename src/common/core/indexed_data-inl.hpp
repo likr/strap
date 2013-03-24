@@ -31,7 +31,7 @@ IndexedData<T>::IndexedData(
     const T& init)
   : offset_(k_first, k_last)
 {
-  for (int i = 0; i < offset_.size() - 1; ++i) {
+  for (int i = 0, stop = offset_.size() - 1; i < stop; ++i) {
     offset_[i + 1] += offset_[i];
   }
   data_.resize(offset_.back());

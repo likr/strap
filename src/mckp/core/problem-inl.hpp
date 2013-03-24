@@ -1,6 +1,7 @@
 #ifndef STRAP_MCKP_CORE_PROBLEM_INL_HPP_
 #define STRAP_MCKP_CORE_PROBLEM_INL_HPP_
 
+#include "common/core/indexed_data.hpp"
 #include "problem.hpp"
 
 namespace strap {
@@ -81,6 +82,14 @@ template<typename PType, typename WType>
 WType& Problem<PType, WType>::c()
 {
   return c_;
+}
+
+
+template<typename PType, typename WType>
+template<typename T>
+IndexedData<T>* Problem<PType, WType>::data(const T init) const
+{
+  return new IndexedData<T>(k_.begin(), k_.end(), init);
 }
 
 } // namespace mckp

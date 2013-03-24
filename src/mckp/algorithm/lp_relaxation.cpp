@@ -2,6 +2,7 @@
 #include <numeric>
 #include <vector>
 #include "common/core/index.hpp"
+#include "common/core/class_indexed_data.hpp"
 #include "mckp/core/problem.hpp"
 #include "dominate.hpp"
 #include "lp_dominate.hpp"
@@ -99,6 +100,12 @@ LpRelaxationProblem<PType, WType>::LpRelaxationProblem(
 
 
 template<typename PType, typename WType>
+int LpRelaxationProblem<PType, WType>::m() const
+{
+  return base_p_.size();
+}
+
+template<typename PType, typename WType>
 PType LpRelaxationProblem<PType, WType>::solve() const
 {
   return solve(c_);
@@ -116,6 +123,33 @@ PType LpRelaxationProblem<PType, WType>::solve(const WType c) const
   } else {
     return p_[l] + (c - w_[l]) * (p_[l + 1] - p_[l]) / (w_[l + 1] - w_[l]);
   }
+}
+
+
+template<typename PType, typename WType>
+ClassIndexedData<int>* LpRelaxationProblem<PType, WType>::solve_with_solution() const
+{
+  return solve_with_solution(c_);
+}
+
+
+template<typename PType, typename WType>
+ClassIndexedData<int>* LpRelaxationProblem<PType, WType>::solve_with_solution(
+    const WType c) const
+{
+  ClassIndexedData<int>* result = new ClassIndexedData<int>(m());
+
+  for (int l = 0, stop = base_p_.size(); l < stop; ++l) {
+    result->get(base_i_[l]) = base_j_[l];
+  }
+  for (int l = 0, stop = p_.size(); l < stop; ++l) {
+    if (c < w_[l]) {
+      break;
+    }
+    result->get(i_[l]) = j_[l];
+  }
+
+  return result;
 }
 
 

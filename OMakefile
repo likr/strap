@@ -30,8 +30,7 @@ section
 		release/mckp/libmckp
 		release/mmkp/libmmkp
 	release: $(CXXProgram strapmain, release/main/main)
-
-CXXProgram(entropy, release/main/entropy)
+	CXXProgram(entropy, release/main/entropy)
 
 .PHONY: clean
 .DEFAULT: release
