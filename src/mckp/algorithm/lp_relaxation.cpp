@@ -111,7 +111,7 @@ PType LpRelaxationProblem<PType, WType>::solve(const WType c) const
   const int l = std::distance(
       w_.begin(),
       std::upper_bound(w_.begin(), w_.end(), c)) - 1;
-  if (l == p_.size() - 1) {
+  if (l == (int)p_.size() - 1) {
     return p_.back();
   } else {
     return p_[l] + (c - w_[l]) * (p_[l + 1] - p_[l]) / (w_[l + 1] - w_[l]);
@@ -156,7 +156,7 @@ void LpRelaxationProblem<PType, WType>::remove(const int i)
   p_[0] -= reduced_p;
   w_[0] -= reduced_w;
 
-  for (int l = 1; l < p_.size(); ++l) {
+  for (int l = 1, stop = p_.size(); l < stop; ++l) {
     if (i_[l] == i) {
       reduced_p = p_[l] - p_[l - 1];
       reduced_w = w_[l] - w_[l - 1];
