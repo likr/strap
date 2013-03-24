@@ -31,7 +31,7 @@ void normalize(Problem<PType, WType>& problem)
         i,
         *std::min_element(
           klass.begin(), klass.end(),
-          [&](const int j1, const int j2) {
+          [i, &problem](const int j1, const int j2) {
             return problem.p(i, j1) < problem.p(i, j2);
           }));
     for (int k = 0; k < d; ++k) {
@@ -39,7 +39,7 @@ void normalize(Problem<PType, WType>& problem)
           i,
           *std::min_element(
             klass.begin(), klass.end(),
-            [&](const int j1, const int j2) {
+            [i, k, &problem](const int j1, const int j2) {
               return problem.w(i, j1, k) < problem.w(i, j2, k);
             }),
           k);
@@ -60,6 +60,7 @@ void normalize(Problem<PType, WType>& problem)
 
 template Problem<int, int>* normalize_copy(const Problem<int, int>& problem);
 template Problem<double, double>* normalize_copy(const Problem<double, double>& problem);
+
 
 } // namespace algorithm
 } // namespace mmkp

@@ -1,6 +1,7 @@
 #ifndef STRAP_COMMON_CORE_INDEX_INL_HPP_
 #define STRAP_COMMON_CORE_INDEX_INL_HPP_
 
+#include <algorithm>
 #include <iterator>
 #include "class.hpp"
 #include "index.hpp"
