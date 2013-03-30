@@ -1,10 +1,8 @@
 FILES[] =
 	core/constraint_index
 	core/class
+	core/index
 
 LIB = $(StaticCXXLibrary libcommon, $(FILES))
-
-clean:
-	rm -f $(LIB)
 
 .SUBDIRS: core

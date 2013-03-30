@@ -57,7 +57,7 @@ void lp_dominate(const Problem<PType, WType>& problem, Class& klass)
   } while (removed);
 
   int l = 0;
-  klass.filter(
+  klass.remove_if(
       [&](const int j) {
         return stencil[l++];
       });

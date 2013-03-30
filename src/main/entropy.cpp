@@ -46,7 +46,7 @@ void parameterized_entropy(const Problem& problem, const std::string& ofilename,
     strap::Index index = problem.index();
     for (strap::Class& klass : index) {
       const int i = klass.i();
-      klass.filter([&](const int j) {
+      klass.remove_if([&](const int j) {
             return upper_bounds->get(i, j) < lower_bound;
           });
     }

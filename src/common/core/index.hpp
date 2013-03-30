@@ -1,10 +1,13 @@
 #ifndef STRAP_COMMON_CORE_INDEX_HPP_
 #define STRAP_COMMON_CORE_INDEX_HPP_
 
+#include <functional>
 #include <vector>
-#include "class.hpp"
 
 namespace strap {
+
+class Class;
+
 
 class Index
 {
@@ -19,6 +22,10 @@ public:
   ClassIterator end();
   ClassConstIterator end() const;
   const Class& at(const int i_index) const;
+  void each(const std::function<void (Class&)>& f);
+  void each(const std::function<void (const Class&)>& f) const;
+  void remove_if(const std::function<bool (const Class&)>& pred);
+  void sort(const std::function<bool (const Class&, const Class&)>& cmp);
 
 
 private:

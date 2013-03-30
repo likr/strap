@@ -7,7 +7,7 @@
 #include "common/core/class_indexed_data.hpp"
 #include "mckp/algorithm/lp_relaxation.hpp"
 #include "mmkp/core/problem.hpp"
-#include "mmkp/algorithm/enumerate.hpp"
+#include "mmkp/algorithm/ecbb.hpp"
 #include "mmkp/algorithm/normalize.hpp"
 
 
@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
   std::cout << *problem << std::endl;
 
   auto start = std::chrono::system_clock::now();
-  const auto* res = strap::mmkp::algorithm::enumerate(*problem);
+  const auto* res = strap::mmkp::algorithm::ecbb(*problem, problem->index());
   auto stop = std::chrono::system_clock::now();
   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 

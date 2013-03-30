@@ -18,7 +18,9 @@ template<typename PType, typename WType>
 class LpRelaxationProblem
 {
 public:
+  LpRelaxationProblem();
   LpRelaxationProblem(const Problem<PType, WType>& problem, const Index& index);
+
   int m() const;
   PType solve() const;
   PType solve(const WType c) const;

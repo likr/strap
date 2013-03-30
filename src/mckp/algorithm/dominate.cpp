@@ -30,7 +30,7 @@ void dominate(const Problem<PType, WType>& problem, Class& klass)
   PType p0 = -1;
 
   sort_by_dominate_order(problem, klass);
-  klass.filter([&](const int j) {
+  klass.remove_if([&](const int j) {
       const PType p = problem.p(i, j);
       if (p <= p0) {
         return true;

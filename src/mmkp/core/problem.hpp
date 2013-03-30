@@ -20,7 +20,8 @@ template<typename PType, typename WType>
 class Problem
 {
 public:
-  typedef const WType* CRandomAccessIterator;
+  typedef const WType* CConstRandomAccessIterator;
+  typedef WType* CRandomAccessIterator;
 
   Problem(const std::vector<int>& k, const int d);
   int m() const;
@@ -33,8 +34,10 @@ public:
   WType& w(const int i, const int j, const int k);
   const WType& c(const int k) const;
   WType& c(const int k);
-  const CRandomAccessIterator c_begin() const;
-  const CRandomAccessIterator c_end() const;
+  CRandomAccessIterator c_begin();
+  CConstRandomAccessIterator c_begin() const;
+  CRandomAccessIterator c_end();
+  CConstRandomAccessIterator c_end() const;
   PType& p_offset();
   const PType& p_offset() const;
   Item<PType, WType> item(const int i, const int j) const;

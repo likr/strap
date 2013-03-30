@@ -4,6 +4,11 @@
 
 namespace strap {
 
+Class::Class()
+{
+}
+
+
 Class::Class(const int i, const int k_i)
   : i_(i), js_(k_i)
 {
@@ -13,7 +18,7 @@ Class::Class(const int i, const int k_i)
 }
 
 
-void Class::filter(const std::function<bool (int)>& pred)
+void Class::remove_if(const std::function<bool (int)>& pred)
 {
   js_.resize(
       std::distance(
@@ -22,6 +27,15 @@ void Class::filter(const std::function<bool (int)>& pred)
           js_.begin(),
           js_.end(),
           pred)));
+}
+
+
+void Class::sort(const std::function<bool (int, int)>& cmp)
+{
+  std::sort(
+      js_.begin(),
+      js_.end(),
+      cmp);
 }
 
 } // namespace strap

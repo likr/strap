@@ -11,6 +11,9 @@ namespace strap {
 namespace mmkp {
 namespace algorithm {
 
+const double ENTROPY_E = 10.017;
+
+
 template<class PType>
 double theta_i(
     const PType upper_bound,

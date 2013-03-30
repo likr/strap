@@ -1,34 +1,22 @@
-#ifndef STRAP_MMKP_ALGORITHM_ENTROPY_HPP_
-#define STRAP_MMKP_ALGORITHM_ENTROPY_HPP_
+#ifndef STRAP_MMKP_ALGORITHM_ENTROPY_CORE_HPP_
+#define STRAP_MMKP_ALGORITHM_ENTROPY_CORE_HPP_
 
 namespace strap {
 
 class Index;
 template<typename T> class IndexedData;
-template<typename T> class ClassIndexedData;
 
 namespace mmkp {
-
 namespace algorithm {
 
 extern const double ENTROPY_E;
 
-
 template<typename PType>
-double difficulty_entropy(
+void make_entropy_core(
     const IndexedData<PType>& upper_bounds,
     const PType upper_bound,
     const PType lower_bound,
-    const Index& index,
-    const double e = ENTROPY_E);
-
-
-template<typename PType>
-ClassIndexedData<double>* entropy(
-    const IndexedData<PType>& upper_bounds,
-    const PType upper_bound,
-    const PType lower_bound,
-    const Index& index,
+    Index& index,
     const double e = ENTROPY_E);
 
 } // namespace algorithm

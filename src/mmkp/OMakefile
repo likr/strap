@@ -1,14 +1,13 @@
 CxxFiles[] =
 	core/item
 	core/problem
+	algorithm/ecbb
 	algorithm/entropy
+	algorithm/entropy_core
 	algorithm/enumerate
 	algorithm/lp_relaxation
 	algorithm/normalize
 
 LIB = $(StaticCXXLibrary libmmkp, $(CxxFiles))
-
-clean:
-	rm -f $(LIB)
 
 .SUBDIRS: core algorithm

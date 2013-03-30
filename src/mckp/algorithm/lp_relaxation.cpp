@@ -29,6 +29,13 @@ struct LmckpItem
 
 }
 
+
+template<typename PType, typename WType>
+LpRelaxationProblem<PType, WType>::LpRelaxationProblem()
+{
+}
+
+
 template<typename PType, typename WType>
 LpRelaxationProblem<PType, WType>::LpRelaxationProblem(
     const Problem<PType, WType>& problem,

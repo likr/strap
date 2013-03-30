@@ -80,9 +80,16 @@ WType& Problem<PType, WType>::c(const int k)
 
 
 template<typename PType, typename WType>
-const typename Problem<PType, WType>::CRandomAccessIterator Problem<PType, WType>::c_begin() const
+typename Problem<PType, WType>::CConstRandomAccessIterator Problem<PType, WType>::c_begin() const
 {
   return &c_[0];
+}
+
+
+template<typename PType, typename WType>
+typename Problem<PType, WType>::CConstRandomAccessIterator Problem<PType, WType>::c_end() const
+{
+  return &c_[0] + d_;
 }
 
 

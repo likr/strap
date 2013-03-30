@@ -4,7 +4,7 @@ CXXFLAGS += -Wall -std=c++11
 INCLUDES += $(absname src)
 
 section
-	CXXFLAGS += -g
+	CXXFLAGS += -g -O0
 	vmount(src, debug)
 	.SUBDIRS: debug
 
