@@ -23,7 +23,9 @@ public:
   typedef const WType* CConstRandomAccessIterator;
   typedef WType* CRandomAccessIterator;
 
+  Problem();
   Problem(const std::vector<int>& k, const int d);
+
   int m() const;
   int n() const;
   int d() const;

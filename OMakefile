@@ -43,6 +43,9 @@ section
 	CXXProgramInstall(install, $(DEST)/bin, strap, src/main)
 
 
+install: libstrap.dylib strap
+
+
 .DEFAULT: strap
 
 clean:

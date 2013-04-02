@@ -6,6 +6,12 @@ namespace strap {
 namespace mmkp {
   
 template<typename PType, typename WType>
+Problem<PType, WType>::Problem()
+{
+}
+
+
+template<typename PType, typename WType>
 Problem<PType, WType>::Problem(const std::vector<int>& k, const int d)
   : k_(k), offset_(k.size()), c_(d), m_(k.size())
 {

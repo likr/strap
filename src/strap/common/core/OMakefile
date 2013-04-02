@@ -1,2 +1,19 @@
 clean:
 	rm -f *.o
+
+section
+	FILES[] =
+		class.hpp
+		class-inl.hpp
+		class_indexed_data.hpp
+		class_indexed_data-inl.hpp
+		constraint_index.hpp
+		constraint_index-inl.hpp
+		index.hpp
+		index-inl.hpp
+		indexed_data.hpp
+		indexed_data-inl.hpp
+	DIR = $(DEST)/include/strap/common/core
+	install:
+		mkdir -p $(DIR)
+		cp -r $(FILES) $(DIR)
