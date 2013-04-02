@@ -12,15 +12,18 @@ class Class;
 class Index
 {
 public:
-  typedef std::vector<Class>::iterator ClassIterator;
-  typedef std::vector<Class>::const_iterator ClassConstIterator;
+  typedef std::vector<Class>::iterator iterator;
+  typedef std::vector<Class>::const_iterator const_iterator;
+
+  Index();
   template<typename KInputIterator>
   Index(const KInputIterator k_first, const KInputIterator k_last);
+
   int size() const;
-  ClassIterator begin();
-  ClassConstIterator begin() const;
-  ClassIterator end();
-  ClassConstIterator end() const;
+  iterator begin();
+  const_iterator begin() const;
+  iterator end();
+  const_iterator end() const;
   const Class& at(const int i_index) const;
   void each(const std::function<void (Class&)>& f);
   void each(const std::function<void (const Class&)>& f) const;

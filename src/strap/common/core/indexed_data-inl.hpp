@@ -6,6 +6,12 @@
 namespace strap {
 
 template<typename T>
+IndexedData<T>::IndexedData()
+{
+}
+
+
+template<typename T>
 template<typename KInputIterator>
 IndexedData<T>::IndexedData(
     const KInputIterator k_first,

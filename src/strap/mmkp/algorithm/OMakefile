@@ -1,2 +1,17 @@
 clean:
 	rm -f *.o
+
+section
+	FILES[] =
+		ecbb.hpp
+		entropy.hpp
+		entropy_core.hpp
+		enumerate.hpp
+		lp_relaxation.hpp
+		normalize.hpp
+		surrogate_constraints.hpp
+		surrogate_dual.hpp
+	DIR = $(DEST)/include/strap/mmkp/algorithm
+	install:
+		mkdir -p $(DIR)
+		cp -r $(FILES) $(DIR)

@@ -9,6 +9,7 @@ template<typename T>
 class ClassIndexedData
 {
 public:
+  ClassIndexedData();
   ClassIndexedData(const int m);
   ClassIndexedData(const int m, const T& init);
 

@@ -6,6 +6,11 @@
 
 namespace strap {
 
+Index::Index()
+{
+}
+
+
 void Index::each(const std::function<void (Class&)>& f)
 {
   std::for_each(

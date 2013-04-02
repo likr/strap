@@ -14,6 +14,11 @@ namespace algorithm {
 
 template<typename PType, typename WType>
 ClassIndexedData<int>* ecbb(
+    const Problem<PType, WType>& problem);
+
+
+template<typename PType, typename WType>
+ClassIndexedData<int>* ecbb(
     const Problem<PType, WType>& problem, const Index& index);
 
 } // namespace algorithm

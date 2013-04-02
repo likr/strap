@@ -6,6 +6,12 @@
 namespace strap {
 
 template<typename T>
+ClassIndexedData<T>::ClassIndexedData()
+{
+}
+
+
+template<typename T>
 ClassIndexedData<T>::ClassIndexedData(const int m)
   : data_(m)
 {

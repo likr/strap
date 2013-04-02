@@ -27,25 +27,25 @@ inline int Class::size() const
 }
 
 
-inline Class::JConstIterator Class::begin() const
+inline Class::const_iterator Class::begin() const
 {
   return js_.begin();
 }
 
 
-inline Class::JIterator Class::begin()
+inline Class::iterator Class::begin()
 {
   return js_.begin();
 }
 
 
-inline Class::JConstIterator Class::end() const
+inline Class::const_iterator Class::end() const
 {
   return js_.end();
 }
 
 
-inline Class::JIterator Class::end()
+inline Class::iterator Class::end()
 {
   return js_.end();
 }

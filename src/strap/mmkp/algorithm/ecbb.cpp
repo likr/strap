@@ -80,7 +80,7 @@ private:
   }
 
 
-  Class::JConstIterator maximum_feasible_item(const Class& klass)
+  Class::const_iterator maximum_feasible_item(const Class& klass)
   {
     auto result = klass.end();
     PType obj(-1);
@@ -183,6 +183,13 @@ private:
 } // namespace
 
 template<typename PType, typename WType>
+ClassIndexedData<int>* ecbb(const Problem<PType, WType>& problem)
+{
+  return ecbb(problem, problem.index());
+}
+
+
+template<typename PType, typename WType>
 ClassIndexedData<int>* ecbb(
     const Problem<PType, WType>& problem,
     const Index& index)
@@ -191,6 +198,8 @@ ClassIndexedData<int>* ecbb(
 }
 
 
+template ClassIndexedData<int>* ecbb(
+  const Problem<int, int>& problem);
 template ClassIndexedData<int>* ecbb(
   const Problem<int, int>& problem, const Index& index);
 

@@ -9,6 +9,7 @@ template<typename T>
 class IndexedData
 {
 public:
+  IndexedData();
   template<typename KInputIterator>
   IndexedData(const KInputIterator k_first, const KInputIterator k_last);
   template<typename KInputIterator>
