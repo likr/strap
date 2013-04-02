@@ -1,7 +1,7 @@
 #ifndef STRAP_MCKP_CORE_PROBLEM_INL_HPP_
 #define STRAP_MCKP_CORE_PROBLEM_INL_HPP_
 
-#include "common/core/indexed_data.hpp"
+#include <strap/common/core/indexed_data.hpp>
 #include "problem.hpp"
 
 namespace strap {

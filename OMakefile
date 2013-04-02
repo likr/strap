@@ -1,39 +1,51 @@
+.PHONY: clean install
+
 CREATE_SUBDIRS = true
 
-CXXFLAGS += -Wall -std=c++11
+CXXFLAGS += -fno-common -fPIC -Wall -std=c++11
 INCLUDES += $(absname src)
 
-section
-	CXXFLAGS += -g -O0
-	vmount(src, debug)
-	.SUBDIRS: debug
+
+DEST = /Users/likr/local
+
+
+if $(equal $(SYSNAME), Darwin)
+	EXT_DLL = .dylib
+	export EXT_DLL
+
 
 section
-	CXXFLAGS += -O3
-	vmount(src, release)
-	.SUBDIRS: release
+	FILES[] = 
+		src/strap/common/core/constraint_index
+		src/strap/common/core/class
+		src/strap/common/core/index
+		src/strap/mckp/core/problem
+		src/strap/mckp/algorithm/dominate
+		src/strap/mckp/algorithm/lp_dominate
+		src/strap/mckp/algorithm/lp_relaxation
+		src/strap/mckp/algorithm/upper_bound
+		src/strap/mmkp/core/item
+		src/strap/mmkp/core/problem
+		src/strap/mmkp/algorithm/ecbb
+		src/strap/mmkp/algorithm/entropy
+		src/strap/mmkp/algorithm/entropy_core
+		src/strap/mmkp/algorithm/enumerate
+		src/strap/mmkp/algorithm/lp_relaxation
+		src/strap/mmkp/algorithm/normalize
+	LDFLAGS[] +=
+		-lClp
+		-lCoinUtils
+	DynamicCXXLibraryInstall(install, $(DEST)/lib, libstrap, $(FILES))
 
-LDFLAGS[] +=
-	-lClp
-	-lCoinUtils
 
 section
-	LIBS[] +=
-		debug/common/libcommon
-		debug/mckp/libmckp
-		debug/mmkp/libmmkp
-	debug: $(CXXProgram strapmain-debug, debug/main/main)
+	LDFLAGS[] += -lstrap
+	CXXProgramInstall(install, $(DEST)/bin, strap, src/main)
 
-section
-	LIBS[] +=
-		release/common/libcommon
-		release/mckp/libmckp
-		release/mmkp/libmmkp
-	release: $(CXXProgram strapmain, release/main/main)
-	CXXProgram(entropy, release/main/entropy)
 
-.PHONY: clean
-.DEFAULT: release
+.DEFAULT: strap
 
 clean:
-	rm -rf debug release
+	rm -f strap libstrap.dylib
+
+.SUBDIRS: src

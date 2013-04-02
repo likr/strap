@@ -1,8 +1,8 @@
 #include <vector>
-#include "common/core/index.hpp"
-#include "common/core/constraint_index.hpp"
-#include "common/core/class_indexed_data.hpp"
-#include "mmkp/core/problem.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/constraint_index.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/mmkp/core/problem.hpp>
 #include "enumerate.hpp"
 
 namespace strap {

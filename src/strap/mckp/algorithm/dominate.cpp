@@ -1,6 +1,6 @@
 #include <algorithm>
-#include "common/core/index.hpp"
-#include "mckp/core/problem.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/mckp/core/problem.hpp>
 #include "dominate.hpp"
 
 namespace strap {

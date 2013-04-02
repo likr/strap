@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
-#include "common/core/class.hpp"
-#include "mckp/core/problem.hpp"
+#include <strap/common/core/class.hpp>
+#include <strap/mckp/core/problem.hpp>
 #include "lp_dominate.hpp"
 
 namespace strap {

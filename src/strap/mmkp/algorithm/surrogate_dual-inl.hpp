@@ -2,7 +2,7 @@
 #define STRAP_MMKP_ALGORITHM_SURROGATE_DUAL_INL_HPP_
 
 #include <memory>
-#include "common/core/index.hpp"
+#include <strap/common/core/index.hpp>
 #include "lp_relaxation.hpp"
 #include "surrogate_dual.hpp"
 

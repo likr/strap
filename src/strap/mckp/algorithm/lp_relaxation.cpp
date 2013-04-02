@@ -1,9 +1,9 @@
 #include <algorithm>
 #include <numeric>
 #include <vector>
-#include "common/core/index.hpp"
-#include "common/core/class_indexed_data.hpp"
-#include "mckp/core/problem.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/mckp/core/problem.hpp>
 #include "dominate.hpp"
 #include "lp_dominate.hpp"
 #include "lp_relaxation.hpp"

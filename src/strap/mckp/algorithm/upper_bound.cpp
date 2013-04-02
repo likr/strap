@@ -1,9 +1,9 @@
 #include <memory>
-#include "common/core/index.hpp"
-#include "common/core/indexed_data.hpp"
-#include "common/core/class_indexed_data.hpp"
-#include "mckp/core/problem.hpp"
-#include "mckp/algorithm/lp_relaxation.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/indexed_data.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/mckp/core/problem.hpp>
+#include "lp_relaxation.hpp"
 #include "upper_bound.hpp"
 
 namespace strap {

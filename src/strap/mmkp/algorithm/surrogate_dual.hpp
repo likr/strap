@@ -1,13 +1,14 @@
 #ifndef STRAP_MMKP_ALGORITHM_SURROGATE_DUAL_HPP_
 #define STRAP_MMKP_ALGORITHM_SURROGATE_DUAL_HPP_
 
-#include "mmkp/core/problem.hpp"
-
 namespace strap {
 
 class Index;
 
 namespace mmkp {
+
+template<typename PType, typename WType> class Problem;
+
 namespace algorithm {
 
 template<typename PType, typename WType, typename UOutputIterator>

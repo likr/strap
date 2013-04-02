@@ -1,10 +1,10 @@
 #include <cmath>
 #include <numeric>
 #include <vector>
-#include "common/core/index.hpp"
-#include "common/core/indexed_data.hpp"
-#include "common/core/class_indexed_data.hpp"
-#include "mmkp/core/problem.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/indexed_data.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/mmkp/core/problem.hpp>
 #include "entropy.hpp"
 
 namespace strap {

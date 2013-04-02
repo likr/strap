@@ -18,4 +18,4 @@
 *.omakedb.lock
 
 # Executable
-strapmain
+strap

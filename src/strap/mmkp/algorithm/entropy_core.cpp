@@ -1,8 +1,8 @@
 #include <memory>
-#include "common/core/class.hpp"
-#include "common/core/class_indexed_data.hpp"
-#include "common/core/index.hpp"
-#include "common/core/indexed_data.hpp"
+#include <strap/common/core/class.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/indexed_data.hpp>
 #include "entropy.hpp"
 #include "entropy_core.hpp"
 

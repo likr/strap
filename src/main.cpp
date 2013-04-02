@@ -3,12 +3,12 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "common/core/index.hpp"
-#include "common/core/class_indexed_data.hpp"
-#include "mckp/algorithm/lp_relaxation.hpp"
-#include "mmkp/core/problem.hpp"
-#include "mmkp/algorithm/ecbb.hpp"
-#include "mmkp/algorithm/normalize.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/mckp/algorithm/lp_relaxation.hpp>
+#include <strap/mmkp/core/problem.hpp>
+#include <strap/mmkp/algorithm/ecbb.hpp>
+#include <strap/mmkp/algorithm/normalize.hpp>
 
 
 typedef int PType;

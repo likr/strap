@@ -2,9 +2,9 @@
 #define STRAP_MMKP_ALGORITHM_SURROGATE_CONSTRAINTS_INL_HPP_
 
 #include <vector>
-#include "common/core/index.hpp"
-#include "mckp/core/problem.hpp"
-#include "mmkp/core/problem.hpp"
+#include <strap/common/core/index.hpp>
+#include <strap/mckp/core/problem.hpp>
+#include <strap/mmkp/core/problem.hpp>
 #include "surrogate_constraints.hpp"
 
 namespace strap {

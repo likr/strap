@@ -1,4 +1,2 @@
-.SUBDIRS: strap
-
 clean:
 	rm -f *.o

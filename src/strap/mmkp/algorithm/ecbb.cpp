@@ -1,17 +1,17 @@
 #include <algorithm>
 #include <memory>
 #include <vector>
-#include "common/core/class_indexed_data.hpp"
-#include "common/core/constraint_index.hpp"
-#include "common/core/index.hpp"
-#include "common/core/indexed_data.hpp"
-#include "mckp/core/problem.hpp"
-#include "mckp/algorithm/lp_relaxation.hpp"
-#include "mckp/algorithm/upper_bound.hpp"
-#include "mmkp/core/problem.hpp"
-#include "mmkp/algorithm/entropy_core.hpp"
-#include "mmkp/algorithm/surrogate_constraints.hpp"
-#include "mmkp/algorithm/surrogate_dual.hpp"
+#include <strap/common/core/class_indexed_data.hpp>
+#include <strap/common/core/constraint_index.hpp>
+#include <strap/common/core/index.hpp>
+#include <strap/common/core/indexed_data.hpp>
+#include <strap/mckp/core/problem.hpp>
+#include <strap/mckp/algorithm/lp_relaxation.hpp>
+#include <strap/mckp/algorithm/upper_bound.hpp>
+#include <strap/mmkp/core/problem.hpp>
+#include "entropy_core.hpp"
+#include "surrogate_constraints.hpp"
+#include "surrogate_dual.hpp"
 #include "ecbb.hpp"
 
 namespace strap {

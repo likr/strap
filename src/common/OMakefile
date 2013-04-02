@@ -1,8 +1,0 @@
-FILES[] =
-	core/constraint_index
-	core/class
-	core/index
-
-LIB = $(StaticCXXLibrary libcommon, $(FILES))
-
-.SUBDIRS: core

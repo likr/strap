@@ -1,8 +1,8 @@
 #ifndef STRAP_MMKP_CORE_PROBLEM_INL_HPP_
 #define STRAP_MMKP_CORE_PROBLEM_INL_HPP_
 
-#include "common/core/indexed_data.hpp"
-#include "common/core/class_indexed_data.hpp"
+#include <strap/common/core/indexed_data.hpp>
+#include <strap/common/core/class_indexed_data.hpp>
 #include "item.hpp"
 #include "problem.hpp"
 
