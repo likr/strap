@@ -1,2 +1,11 @@
 clean:
 	rm -f *.o
+
+section
+	FILES[] =
+		problem.hpp
+		problem-inl.hpp
+	DIR = $(DEST)/include/strap/mckp/core
+	install:
+		mkdir -p $(DIR)
+		cp -r $(FILES) $(DIR)

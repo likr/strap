@@ -1,2 +1,13 @@
 clean:
 	rm -f *.o
+
+section
+	FILES[] =
+		dominate.hpp
+		lp_dominate.hpp
+		lp_relaxation.hpp
+		upper_bound.hpp
+	DIR = $(DEST)/include/strap/mckp/algorithm
+	install:
+		mkdir -p $(DIR)
+		cp -r $(FILES) $(DIR)

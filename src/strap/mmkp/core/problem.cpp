@@ -71,6 +71,8 @@ Problem<PType, WType>* Problem<PType, WType>::read(std::istream& in)
 
 
 template class Problem<int, int>;
+template class Problem<int, double>;
+template class Problem<double, int>;
 template class Problem<double, double>;
 
 } // namespace mmkp
@@ -100,5 +102,7 @@ std::ostream& operator<<(std::ostream& out, const strap::mmkp::Problem<PType, WT
 }
 
 
-template std::ostream& operator<<<int, int>(std::ostream& out, const strap::mmkp::Problem<int, int>& problem);
-template std::ostream& operator<<<double, double>(std::ostream& out, const strap::mmkp::Problem<double, double>& problem);
+template std::ostream& operator<<(std::ostream& out, const strap::mmkp::Problem<int, int>& problem);
+template std::ostream& operator<<(std::ostream& out, const strap::mmkp::Problem<int, double>& problem);
+template std::ostream& operator<<(std::ostream& out, const strap::mmkp::Problem<double, int>& problem);
+template std::ostream& operator<<(std::ostream& out, const strap::mmkp::Problem<double, double>& problem);

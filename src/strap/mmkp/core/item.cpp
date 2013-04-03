@@ -18,6 +18,8 @@ Item<PType, WType>::W::W(const Item<PType, WType>& item)
 
 
 template class Item<int, int>;
+template class Item<int, double>;
+template class Item<double, int>;
 template class Item<double, double>;
 
 } // namespace mmkp

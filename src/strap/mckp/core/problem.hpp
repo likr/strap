@@ -5,15 +5,19 @@
 
 namespace strap {
 
+class Index;
 template<typename T> class IndexedData;
+
 namespace mckp {
 
 template<typename PType, typename WType>
 class Problem
 {
 public:
+  Problem();
   template<typename KInputIterator>
   Problem(const KInputIterator k_first, const KInputIterator k_last);
+
   int m() const;
   int n() const;
   int k(const int i) const;
@@ -23,6 +27,7 @@ public:
   WType& w(const int i, const int j);
   const WType& c() const;
   WType& c();
+  Index index() const;
   template<typename T> IndexedData<T>* data(const T init) const;
 
 

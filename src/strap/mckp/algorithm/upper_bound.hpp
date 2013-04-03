@@ -13,7 +13,15 @@ template<typename PType, typename WType> class Problem;
 namespace algorithm {
 
 template<typename PType, typename WType>
+IndexedData<PType>* greedy_upper_bounds(const Problem<PType, WType>& problem);
+
+
+template<typename PType, typename WType>
 IndexedData<PType>* greedy_upper_bounds(const Problem<PType, WType>& problem, const Index& index);
+
+
+template<typename PType, typename WType>
+IndexedData<PType>* dkw_upper_bounds(const Problem<PType, WType>& problem);
 
 
 template<typename PType, typename WType>

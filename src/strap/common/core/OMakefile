@@ -9,6 +9,8 @@ section
 		class_indexed_data-inl.hpp
 		constraint_index.hpp
 		constraint_index-inl.hpp
+		constraint_indexed_data.hpp
+		constraint_indexed_data-inl.hpp
 		index.hpp
 		index-inl.hpp
 		indexed_data.hpp

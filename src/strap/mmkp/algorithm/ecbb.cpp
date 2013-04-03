@@ -3,6 +3,7 @@
 #include <vector>
 #include <strap/common/core/class_indexed_data.hpp>
 #include <strap/common/core/constraint_index.hpp>
+#include <strap/common/core/constraint_indexed_data.hpp>
 #include <strap/common/core/index.hpp>
 #include <strap/common/core/indexed_data.hpp>
 #include <strap/mckp/core/problem.hpp>
@@ -27,15 +28,21 @@ public:
     : problem_(problem), index_(index), constraint_index_(problem.constraint_index()),
       optimal_value_(0),
       solution_(problem.class_data(0)), current_solution_(problem.class_data(0)),
+      upper_bound_(0),
       sub_lmck_problems_(problem.m())
   {
-    std::vector<double> u(problem_.d());
-    upper_bound_ = surrogate_dual(problem_, index_, u.begin());
-    mck_problem_.reset(surrogate_constraints(problem_, index_, u.begin()));
+    mck_problem_.reset(surrogate_constraints(problem_, index_));
     upper_bounds_.reset(mckp::algorithm::greedy_upper_bounds(*mck_problem_, index_));
     lmck_problem_.reset(
         new mckp::algorithm::LpRelaxationProblem<PType, double>(*mck_problem_, index_));
     base_solution_.reset(lmck_problem_->solve_with_solution());
+
+    for (const auto& klass : index_) {
+      const int i = klass.i();
+      for (const int j : klass) {
+        upper_bound_ = std::max(upper_bound_, upper_bounds_->get(i, j));
+      }
+    }
 
     obj_stack_.resize(problem_.m());
     c_stack_.resize(problem_.m() * problem_.d());

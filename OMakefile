@@ -32,6 +32,8 @@ section
 		src/strap/mmkp/algorithm/enumerate
 		src/strap/mmkp/algorithm/lp_relaxation
 		src/strap/mmkp/algorithm/normalize
+		src/strap/mmkp/algorithm/surrogate_constraints
+		src/strap/mmkp/algorithm/surrogate_dual
 	LDFLAGS[] +=
 		-lClp
 		-lCoinUtils

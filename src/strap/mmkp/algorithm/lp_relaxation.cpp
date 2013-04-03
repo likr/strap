@@ -47,9 +47,13 @@ LpRelaxationProblem* lp_relaxation(
   return model;
 }
 
-template LpRelaxationProblem* lp_relaxation<int, int>(
+template LpRelaxationProblem* lp_relaxation(
     const Problem<int, int>& problem, const Index& index);
-template LpRelaxationProblem* lp_relaxation<double, double>(
+template LpRelaxationProblem* lp_relaxation(
+    const Problem<int, double>& problem, const Index& index);
+template LpRelaxationProblem* lp_relaxation(
+    const Problem<double, int>& problem, const Index& index);
+template LpRelaxationProblem* lp_relaxation(
     const Problem<double, double>& problem, const Index& index);
 
 } // namespace algorithm

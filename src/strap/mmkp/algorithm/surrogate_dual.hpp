@@ -4,6 +4,7 @@
 namespace strap {
 
 class Index;
+template<typename T> class ConstraintIndexedData;
 
 namespace mmkp {
 
@@ -11,14 +12,17 @@ template<typename PType, typename WType> class Problem;
 
 namespace algorithm {
 
-template<typename PType, typename WType, typename UOutputIterator>
-PType surrogate_dual(
-    const Problem<PType, WType>& problem, const Index& index,
-    const UOutputIterator result);
+template<typename PType, typename WType>
+ConstraintIndexedData<double>* surrogate_dual(
+    const Problem<PType, WType>& problem);
+
+
+template<typename PType, typename WType>
+ConstraintIndexedData<double>* surrogate_dual(
+    const Problem<PType, WType>& problem, const Index& index);
 
 } // namespace alg
 } // namespace mmkp
 } // namespace strap
 
-#include "surrogate_dual-inl.hpp"
 #endif

@@ -11,6 +11,14 @@ namespace mckp {
 namespace algorithm {
 
 template<typename PType, typename WType>
+IndexedData<PType>* greedy_upper_bounds(const Problem<PType, WType>& problem)
+{
+  auto index = problem.index();
+  return greedy_upper_bounds(problem, index);
+}
+
+
+template<typename PType, typename WType>
 IndexedData<PType>* greedy_upper_bounds(
     const Problem<PType, WType>& problem,
     const Index& index)
@@ -31,6 +39,14 @@ IndexedData<PType>* greedy_upper_bounds(
   }
 
   return upper_bounds;
+}
+
+
+template<typename PType, typename WType>
+IndexedData<PType>* dkw_upper_bounds(const Problem<PType, WType>& problem)
+{
+  auto index = problem.index();
+  return dkw_upper_bounds(problem, index);
 }
 
 
@@ -66,22 +82,14 @@ IndexedData<PType>* dkw_upper_bounds(
 }
 
 
-template IndexedData<int>* greedy_upper_bounds<int, int>(
-    const Problem<int, int>& problem, const Index& index);
-template IndexedData<int>* greedy_upper_bounds<int, double>(
-    const Problem<int, double>& problem, const Index& index);
-template IndexedData<double>* greedy_upper_bounds<double, int>(
-    const Problem<double, int>& problem, const Index& index);
-template IndexedData<double>* greedy_upper_bounds<double, double>(
-    const Problem<double, double>& problem, const Index& index);
-template IndexedData<int>* dkw_upper_bounds<int, int>(
-    const Problem<int, int>& problem, const Index& index);
-template IndexedData<int>* dkw_upper_bounds<int, double>(
-    const Problem<int, double>& problem, const Index& index);
-template IndexedData<double>* dkw_upper_bounds<double, int>(
-    const Problem<double, int>& problem, const Index& index);
-template IndexedData<double>* dkw_upper_bounds<double, double>(
-    const Problem<double, double>& problem, const Index& index);
+template IndexedData<int>* greedy_upper_bounds(const Problem<int, int>& problem);
+template IndexedData<int>* greedy_upper_bounds(const Problem<int, double>& problem);
+template IndexedData<double>* greedy_upper_bounds(const Problem<double, int>& problem);
+template IndexedData<double>* greedy_upper_bounds(const Problem<double, double>& problem);
+template IndexedData<int>* dkw_upper_bounds(const Problem<int, int>& problem);
+template IndexedData<int>* dkw_upper_bounds(const Problem<int, double>& problem);
+template IndexedData<double>* dkw_upper_bounds(const Problem<double, int>& problem);
+template IndexedData<double>* dkw_upper_bounds(const Problem<double, double>& problem);
 
 } // namespace algorithm
 } // namespace mckp
