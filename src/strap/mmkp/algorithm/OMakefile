@@ -3,6 +3,7 @@ clean:
 
 section
 	FILES[] =
+		break_difference_core.hpp
 		ecbb.hpp
 		entropy.hpp
 		entropy_core.hpp

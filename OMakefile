@@ -26,6 +26,7 @@ section
 		src/strap/mckp/algorithm/upper_bound
 		src/strap/mmkp/core/item
 		src/strap/mmkp/core/problem
+		src/strap/mmkp/algorithm/break_difference_core
 		src/strap/mmkp/algorithm/ecbb
 		src/strap/mmkp/algorithm/entropy
 		src/strap/mmkp/algorithm/entropy_core
