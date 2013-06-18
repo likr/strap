@@ -1,6 +1,7 @@
 #ifndef STRAP_MMKP_ALGORITHM_SURROGATE_CONSTRAINTS_INL_HPP_
 #define STRAP_MMKP_ALGORITHM_SURROGATE_CONSTRAINTS_INL_HPP_
 
+#include <memory>
 #include <vector>
 #include <strap/common/core/constraint_indexed_data.hpp>
 #include <strap/common/core/index.hpp>

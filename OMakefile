@@ -6,7 +6,7 @@ CXXFLAGS += -fno-common -fPIC -Wall -std=c++11
 INCLUDES += $(absname src)
 
 
-DEST = /Users/likr/local
+DEST = /usr/local
 
 
 if $(equal $(SYSNAME), Darwin)
@@ -46,12 +46,12 @@ section
 	CXXProgramInstall(install, $(DEST)/bin, strap, src/main)
 
 
-install: libstrap.dylib strap
+install: libstrap$(EXT_DLL) strap
 
 
 .DEFAULT: strap
 
 clean:
-	rm -f strap libstrap.dylib
+	rm -f strap libstrap$(EXT_DLL)
 
 .SUBDIRS: src
