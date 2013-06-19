@@ -6,6 +6,8 @@ CXXFLAGS += -fno-common -fPIC -Wall -std=c++11
 INCLUDES += $(absname src)
 
 
+PROGNAME = strap
+LIBNAME = libstrap
 DEST = /usr/local
 
 
@@ -38,20 +40,23 @@ section
 	LDFLAGS[] +=
 		-lClp
 		-lCoinUtils
-	DynamicCXXLibraryInstall(install, $(DEST)/lib, libstrap, $(FILES))
+	DynamicCXXLibraryInstall(install, $(DEST)/lib, $(LIBNAME), $(FILES))
 
 
 section
-	LDFLAGS[] += -lstrap
-	CXXProgramInstall(install, $(DEST)/bin, strap, src/main)
+	LDFLAGS[] += -L. -lstrap
+	CXXProgramInstall(install, $(DEST)/bin, $(PROGNAME), src/main)
 
 
-install: libstrap$(EXT_DLL) strap
+$(PROGNAME): $(LIBNAME)$(EXT_DLL)
 
 
-.DEFAULT: strap
+install: $(PROGNAME)
+
+
+.DEFAULT: $(PROGNAME)
 
 clean:
-	rm -f strap libstrap$(EXT_DLL)
+	rm -f $(PROGNAME) $(LIBNAME)$(EXT_DLL)
 
 .SUBDIRS: src

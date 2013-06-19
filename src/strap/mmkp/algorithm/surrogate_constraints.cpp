@@ -90,6 +90,14 @@ template mckp::Problem<double, double>* surrogate_constraints(
     const Problem<double, int>& problem);
 template mckp::Problem<double, double>* surrogate_constraints(
     const Problem<double, double>& problem);
+template mckp::Problem<int, double>* surrogate_constraints(
+    const Problem<int, int>& problem, const Index&);
+template mckp::Problem<int, double>* surrogate_constraints(
+    const Problem<int, double>& problem, const Index&);
+template mckp::Problem<double, double>* surrogate_constraints(
+    const Problem<double, int>& problem, const Index&);
+template mckp::Problem<double, double>* surrogate_constraints(
+    const Problem<double, double>& problem, const Index&);
 
 } // namespace algorithm
 } // namespace mmkp
