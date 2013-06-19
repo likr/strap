@@ -55,11 +55,11 @@ public:
     uc_stack_[0] = mck_problem_->c();
 
     make_entropy_core(*upper_bounds_, upper_bound_, PType(0), index_);
-    sub_lmck_problems_[0] = *lmck_problem_;
-    sub_lmck_problems_[0].remove(index_.at(0).i());
+    sub_lmck_problems_[0] = new mckp::algorithm::LpRelaxationProblem<PType, double>(*lmck_problem_);
+    sub_lmck_problems_[0]->remove(index_.at(0).i());
     for (int depth = 1; depth < problem_.m(); ++depth) {
-      sub_lmck_problems_[depth] = sub_lmck_problems_[depth - 1];
-      sub_lmck_problems_[depth].remove(index_.at(depth).i());
+      sub_lmck_problems_[depth] = new mckp::algorithm::LpRelaxationProblem<PType, double>(*sub_lmck_problems_[depth - 1]);
+      sub_lmck_problems_[depth]->remove(index_.at(depth).i());
     }
   }
 
@@ -125,7 +125,7 @@ private:
       return false;
     }
 
-    const PType ub = sub_lmck_problems_[depth].solve(uc_stack_[depth] - mck_problem_->w(i, j));
+    const PType ub = sub_lmck_problems_[depth]->solve(uc_stack_[depth] - mck_problem_->w(i, j));
     if (obj_stack_[depth] + item.p() + ub < optimal_value_) {
       return false;
     }
@@ -179,7 +179,7 @@ private:
   IndexedData<PType>* upper_bounds_;
   mckp::Problem<PType, double>* mck_problem_;
   mckp::algorithm::LpRelaxationProblem<PType, double>* lmck_problem_;
-  std::vector<mckp::algorithm::LpRelaxationProblem<PType, double> > sub_lmck_problems_;
+  std::vector<mckp::algorithm::LpRelaxationProblem<PType, double>*> sub_lmck_problems_;
   ClassIndexedData<int>* base_solution_; // FIXME it must be delete
 
   std::vector<PType> obj_stack_;
