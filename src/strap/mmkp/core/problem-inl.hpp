@@ -10,98 +10,98 @@ namespace strap {
 namespace mmkp {
 
 template<typename PType, typename WType>
-int Problem<PType, WType>::m() const
+inline int Problem<PType, WType>::m() const
 {
   return m_;
 }
 
 
 template<typename PType, typename WType>
-int Problem<PType, WType>::n() const
+inline int Problem<PType, WType>::n() const
 {
   return n_;
 }
 
 
 template<typename PType, typename WType>
-int Problem<PType, WType>::d() const
+inline int Problem<PType, WType>::d() const
 {
   return d_;
 }
 
 
 template<typename PType, typename WType>
-int Problem<PType, WType>::k(const int i) const
+inline int Problem<PType, WType>::k(const int i) const
 {
   return k_[i];
 }
 
 
 template<typename PType, typename WType>
-const PType& Problem<PType, WType>::p(const int i, const int j) const
+inline const PType& Problem<PType, WType>::p(const int i, const int j) const
 {
   return p_[offset_[i] + j];
 }
 
 
 template<typename PType, typename WType>
-PType& Problem<PType, WType>::p(const int i, const int j)
+inline PType& Problem<PType, WType>::p(const int i, const int j)
 {
   return p_[offset_[i] + j];
 }
 
 
 template<typename PType, typename WType>
-const WType& Problem<PType, WType>::w(const int i, const int j, const int k) const
+inline const WType& Problem<PType, WType>::w(const int i, const int j, const int k) const
 {
   return w_[(offset_[i] + j) * d() + k];
 }
 
 
 template<typename PType, typename WType>
-WType& Problem<PType, WType>::w(const int i, const int j, const int k)
+inline WType& Problem<PType, WType>::w(const int i, const int j, const int k)
 {
   return w_[(offset_[i] + j) * d() + k];
 }
 
 
 template<typename PType, typename WType>
-const WType& Problem<PType, WType>::c(const int k) const
+inline const WType& Problem<PType, WType>::c(const int k) const
 {
   return c_[k];
 }
 
 
 template<typename PType, typename WType>
-WType& Problem<PType, WType>::c(const int k)
+inline WType& Problem<PType, WType>::c(const int k)
 {
   return c_[k];
 }
 
 
 template<typename PType, typename WType>
-typename Problem<PType, WType>::CConstRandomAccessIterator Problem<PType, WType>::c_begin() const
+inline typename Problem<PType, WType>::CConstRandomAccessIterator Problem<PType, WType>::c_begin() const
 {
   return &c_[0];
 }
 
 
 template<typename PType, typename WType>
-typename Problem<PType, WType>::CConstRandomAccessIterator Problem<PType, WType>::c_end() const
+inline typename Problem<PType, WType>::CConstRandomAccessIterator Problem<PType, WType>::c_end() const
 {
   return &c_[0] + d_;
 }
 
 
 template<typename PType, typename WType>
-PType& Problem<PType, WType>::p_offset()
+inline PType& Problem<PType, WType>::p_offset()
 {
   return p_offset_;
 }
 
 
 template<typename PType, typename WType>
-const PType& Problem<PType, WType>::p_offset() const
+inline const PType& Problem<PType, WType>::p_offset() const
 {
   return p_offset_;
 }
