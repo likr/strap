@@ -31,11 +31,11 @@ public:
       upper_bound_(0),
       sub_lmck_problems_(problem.m())
   {
-    mck_problem_.reset(surrogate_constraints(problem_, index_));
-    upper_bounds_.reset(mckp::algorithm::greedy_upper_bounds(*mck_problem_, index_));
-    lmck_problem_.reset(
-        new mckp::algorithm::LpRelaxationProblem<PType, double>(*mck_problem_, index_));
-    base_solution_.reset(lmck_problem_->solve_with_solution());
+    mck_problem_ = surrogate_constraints(problem_, index_);
+    upper_bounds_ = mckp::algorithm::greedy_upper_bounds(*mck_problem_, index_);
+    lmck_problem_ =
+        new mckp::algorithm::LpRelaxationProblem<PType, double>(*mck_problem_, index_);
+    base_solution_ = lmck_problem_->solve_with_solution();
 
     for (const auto& klass : index_) {
       const int i = klass.i();
@@ -176,11 +176,11 @@ private:
   ClassIndexedData<int>* current_solution_;
 
   PType upper_bound_;
-  std::unique_ptr<IndexedData<PType> > upper_bounds_;
-  std::unique_ptr<mckp::Problem<PType, double> > mck_problem_;
-  std::unique_ptr<mckp::algorithm::LpRelaxationProblem<PType, double> > lmck_problem_;
+  IndexedData<PType>* upper_bounds_;
+  mckp::Problem<PType, double>* mck_problem_;
+  mckp::algorithm::LpRelaxationProblem<PType, double>* lmck_problem_;
   std::vector<mckp::algorithm::LpRelaxationProblem<PType, double> > sub_lmck_problems_;
-  std::unique_ptr<ClassIndexedData<int> > base_solution_;
+  ClassIndexedData<int>* base_solution_; // FIXME it must be delete
 
   std::vector<PType> obj_stack_;
   std::vector<WType> c_stack_;
