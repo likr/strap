@@ -29,6 +29,8 @@ public:
   void each(const std::function<void (const Class&)>& f) const;
   void remove_if(const std::function<bool (const Class&)>& pred);
   void sort(const std::function<bool (const Class&, const Class&)>& cmp);
+  void traverse(const std::function<bool (const int, const int, const int)>&);
+  void traverse(const std::function<bool (const int, const int, const int)>&) const;
 
 
 private:
