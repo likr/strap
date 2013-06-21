@@ -2,7 +2,7 @@
 
 CREATE_SUBDIRS = true
 
-CXXFLAGS += -fno-common -fPIC -Wall -std=c++11
+CXXFLAGS += -O3 -g -fno-common -fPIC -Wall -std=c++11
 INCLUDES += $(absname src)
 
 
@@ -37,14 +37,11 @@ section
 		src/strap/mmkp/algorithm/normalize
 		src/strap/mmkp/algorithm/surrogate_constraints
 		src/strap/mmkp/algorithm/surrogate_dual
-	LDFLAGS[] +=
-		-lClp
-		-lCoinUtils
 	DynamicCXXLibraryInstall(install, $(DEST)/lib, $(LIBNAME), $(FILES))
 
 
 section
-	LDFLAGS[] += -L. -lstrap
+	LDFLAGS[] += $(shell pkg-config --libs clp) -L. -lstrap
 	CXXProgramInstall(install, $(DEST)/bin, $(PROGNAME), src/main)
 
 
