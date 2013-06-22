@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <strap/common/core/index.hpp>
+#include <strap/mmkp/core/item.hpp>
 #include <strap/mmkp/core/problem.hpp>
 #include "lp_relaxation.hpp"
 

@@ -3,7 +3,6 @@
 
 #include <strap/common/core/indexed_data.hpp>
 #include <strap/common/core/class_indexed_data.hpp>
-#include "item.hpp"
 #include "problem.hpp"
 
 namespace strap {
@@ -108,9 +107,16 @@ inline const PType& Problem<PType, WType>::p_offset() const
 
 
 template<typename PType, typename WType>
-Item<PType, WType> Problem<PType, WType>::item(const int i, const int j) const
+Item<PType, WType>& Problem<PType, WType>::item(const int i, const int j)
 {
-  return Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);
+  return items_[offset_[i] + j];
+}
+
+
+template<typename PType, typename WType>
+const Item<PType, WType>& Problem<PType, WType>::item(const int i, const int j) const
+{
+  return items_[offset_[i] + j];
 }
 
 

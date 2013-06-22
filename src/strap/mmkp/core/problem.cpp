@@ -1,5 +1,6 @@
 #include <strap/common/core/index.hpp>
 #include <strap/common/core/constraint_index.hpp>
+#include "item.hpp"
 #include "problem.hpp"
 
 namespace strap {
@@ -22,6 +23,14 @@ Problem<PType, WType>::Problem(const std::vector<int>& k, const int d)
   d_ = d;
   p_.resize(n_);
   w_.resize(n_ * d);
+  items_.resize(n_);
+
+  for (const auto& klass : index()) {
+    const int i = klass.i();
+    for (const int j : klass) {
+      items_[offset_[i] + j] = Item<PType, WType>(&p(i, j), &w(i, j, 0), d_);
+    }
+  }
 }
 
 

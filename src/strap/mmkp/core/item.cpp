@@ -4,6 +4,12 @@ namespace strap {
 namespace mmkp {
   
 template<typename PType, typename WType>
+Item<PType, WType>::Item()
+{
+}
+
+
+template<typename PType, typename WType>
 Item<PType, WType>::Item(const PType* p, const WType* w, const int d)
   : p_(p), w_(w), d_(d)
 {

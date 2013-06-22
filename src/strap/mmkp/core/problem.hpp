@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "item.hpp"
 
 namespace strap {
 
@@ -12,9 +13,6 @@ template<typename T> class IndexedData;
 template<typename T> class ClassIndexedData;
 
 namespace mmkp {
-
-template<typename PType, typename WType> class Item;
-
 
 template<typename PType, typename WType> 
 class Problem
@@ -42,7 +40,8 @@ public:
   CConstRandomAccessIterator c_end() const;
   PType& p_offset();
   const PType& p_offset() const;
-  Item<PType, WType> item(const int i, const int j) const;
+  Item<PType, WType>& item(const int i, const int j);
+  const Item<PType, WType>& item(const int i, const int j) const;
   Index index() const;
   ConstraintIndex constraint_index() const;
   template<typename T> IndexedData<T>* data(const T init) const;
@@ -56,6 +55,7 @@ private:
   std::vector<WType> c_;
   std::vector<PType> p_;
   std::vector<WType> w_;
+  std::vector<Item<PType, WType> > items_;
   int m_;
   int n_;
   int d_;

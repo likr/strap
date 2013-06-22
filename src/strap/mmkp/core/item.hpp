@@ -21,6 +21,7 @@ public:
     const Item& item_;
   };
 
+  Item();
   Item(const PType* p, const WType* w, const int d);
   const PType& p() const;
   W w() const;
