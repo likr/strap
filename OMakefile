@@ -37,6 +37,7 @@ section
 		src/strap/mmkp/algorithm/normalize
 		src/strap/mmkp/algorithm/surrogate_constraints
 		src/strap/mmkp/algorithm/surrogate_dual
+	LDFLAGS[] += $(shell pkg-config --libs clp)
 	DynamicCXXLibraryInstall(install, $(DEST)/lib, $(LIBNAME), $(FILES))
 
 
