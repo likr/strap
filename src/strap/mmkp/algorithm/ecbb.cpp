@@ -68,39 +68,56 @@ public:
         problem_.c_end(),
         c_stack.begin());
     uc_stack[0] = mck_problem_->c();
+    auto bottom_class = index_.at(m - 1);
+    const int bottom_i = bottom_class.i();
+    bottom_class.sort([&](const int j1, const int j2) {
+          return problem_.p(bottom_class.i(), j1) >= problem_.p(bottom_class.i(), j2);
+        });
 
+
+    int leaf_count = 0;
     index_.traverse([&, d, m](const int depth, const int i, const int j) -> bool {
           solution->get(i) = j;
           const auto& item = problem_.item(i, j);
-          if (depth == m - 1) {
-            if (this->is_feasible(c_stack.begin() + d * depth, item.w_begin(), d)
-                && obj_stack.back() + item.p() > incumbent_value) {
-              incumbent_value = obj_stack.back() + item.p();
-              for (const auto& klass : this->index_) {
-                incumbent_solution->get(klass.i()) = solution->get(klass.i());
+          if (upper_bounds_->get(i, j) < incumbent_value) {
+            return false;
+          }
+          if (!this->is_feasible(c_stack.begin() + d * depth, item.w_begin(), d)) {
+            return false;
+          }
+          const PType ub = sub_lmck_problems_[depth]->solve(uc_stack[depth] - mck_problem_->w(i, j));
+          if (obj_stack[depth] + item.p() + ub < incumbent_value) {
+            return false;
+          }
+
+          obj_stack[depth + 1] = obj_stack[depth] + item.p();
+          uc_stack[depth + 1] = uc_stack[depth] - mck_problem_->w(i, j);
+          for (const int k : constraint_index_) {
+            c_stack[d * (depth + 1) + k] = c_stack[d * depth + k] - item.w(k);
+          }
+
+          if (depth == m - 2) {
+            for (const int bottom_j : bottom_class) {
+              const auto& bottom_item = problem_.item(bottom_i, bottom_j);
+              if (obj_stack.back() + bottom_item.p() < incumbent_value) {
+                break;
+              }
+              ++leaf_count;
+              if (this->is_feasible(c_stack.begin() + d * (depth + 1), bottom_item.w_begin(), d)) {
+                solution->get(bottom_i) = bottom_j;
+                incumbent_value = obj_stack.back() + bottom_item.p();
+                for (const auto& klass : this->index_) {
+                  incumbent_solution->get(klass.i()) = solution->get(klass.i());
+                }
+                break;
               }
             }
             return false;
           } else {
-            if (upper_bounds_->get(i, j) < incumbent_value) {
-              return false;
-            }
-            if (!this->is_feasible(c_stack.begin() + d * depth, item.w_begin(), d)) {
-              return false;
-            }
-            const PType ub = sub_lmck_problems_[depth]->solve(uc_stack[depth] - mck_problem_->w(i, j));
-            if (obj_stack[depth] + item.p() + ub < incumbent_value) {
-              return false;
-            }
-
-            obj_stack[depth + 1] = obj_stack[depth] + item.p();
-            uc_stack[depth + 1] = uc_stack[depth] - mck_problem_->w(i, j);
-            for (const int k : constraint_index_) {
-              c_stack[d * (depth + 1) + k] = c_stack[d * depth + k] - item.w(k);
-            }
             return true;
           }
         });
+    std::cout << "number of leaf: " << leaf_count << std::endl;
     return incumbent_solution;
   }
 

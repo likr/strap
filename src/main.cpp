@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
   std::unique_ptr<Problem> problem(Problem::read(in));
   strap::mmkp::algorithm::normalize(*problem);
 
-  std::cout << *problem << std::endl;
+  std::cout << "start calculation ..." << std::endl;
 
   auto start = std::chrono::system_clock::now();
   const auto* res = strap::mmkp::algorithm::ecbb(*problem, problem->index());
