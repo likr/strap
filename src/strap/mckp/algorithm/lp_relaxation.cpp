@@ -122,12 +122,12 @@ PType LpRelaxationProblem<PType, WType>::solve() const
 template<typename PType, typename WType>
 PType LpRelaxationProblem<PType, WType>::solve(const WType c) const
 {
-  const int l = std::distance(
-      w_.begin(),
-      std::upper_bound(w_.begin(), w_.end(), c)) - 1;
-  if (l == (int)p_.size() - 1) {
+  if (c >= w_.back()) {
     return p_.back();
   } else {
+    const int l = std::distance(
+        w_.begin(),
+        std::upper_bound(w_.begin(), w_.end(), c)) - 1;
     return p_[l] + (c - w_[l]) * (p_[l + 1] - p_[l]) / (w_[l + 1] - w_[l]);
   }
 }
