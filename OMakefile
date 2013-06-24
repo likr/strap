@@ -8,7 +8,6 @@ INCLUDES += $(absname src)
 
 PROGNAME = strap
 LIBNAME = libstrap
-DEST = /usr/local
 
 
 if $(equal $(SYSNAME), Darwin)
