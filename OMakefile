@@ -8,7 +8,6 @@ INCLUDES += $(absname src)
 
 PROGNAME = strap
 LIBNAME = libstrap
-DEST = /usr/local
 
 
 if $(equal $(SYSNAME), Darwin)
@@ -33,6 +32,7 @@ section
 		src/strap/mmkp/algorithm/entropy
 		src/strap/mmkp/algorithm/entropy_core
 		src/strap/mmkp/algorithm/enumerate
+		src/strap/mmkp/algorithm/lmck_base_solution
 		src/strap/mmkp/algorithm/lp_relaxation
 		src/strap/mmkp/algorithm/normalize
 		src/strap/mmkp/algorithm/surrogate_constraints

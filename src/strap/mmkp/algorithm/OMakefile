@@ -8,6 +8,7 @@ section
 		entropy.hpp
 		entropy_core.hpp
 		enumerate.hpp
+		lmck_base_solution.hpp
 		lp_relaxation.hpp
 		normalize.hpp
 		surrogate_constraints.hpp
