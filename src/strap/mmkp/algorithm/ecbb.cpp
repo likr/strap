@@ -138,7 +138,7 @@ private:
         const PType obj = obj_stack_.back() + problem_.p(i, *maximum_j);
         if (obj > optimal_value_) {
           optimal_value_ = obj;
-          std::cout << "new solution found : " << optimal_value_ + problem_.p_offset() << std::endl;
+          std::cerr << "new solution found : " << optimal_value_ + problem_.p_offset() << std::endl;
           current_solution_->get(i) = *maximum_j;
           for (const auto& klass : index_) {
             solution_->get(klass.i()) = current_solution_->get(klass.i());

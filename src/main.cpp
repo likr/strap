@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <picojson.h>
 #include <strap/common/core/index.hpp>
 #include <strap/common/core/class_indexed_data.hpp>
 #include <strap/mckp/algorithm/lp_relaxation.hpp>
@@ -24,20 +25,26 @@ int main(int argc, char* argv[])
   std::unique_ptr<Problem> problem(Problem::read(in));
   strap::mmkp::algorithm::normalize(*problem);
 
-  std::cout << "start calculation ..." << std::endl;
+  std::cerr << "start calculation ..." << std::endl;
 
   auto start = std::chrono::system_clock::now();
   const auto* res = strap::mmkp::algorithm::ecbb(*problem, problem->index());
   auto stop = std::chrono::system_clock::now();
   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
+  picojson::object result;
+  picojson::array solution;
+
   PType obj = problem->p_offset();
   for (const auto& klass : problem->index()) {
     const int i = klass.i();
     const int j = res->get(i);
     obj += problem->p(i, j);
-    std::cout << "x[" << i << "] = " << j << std::endl;
+    solution.push_back(picojson::value((double)j));
   }
-  std::cout << "optimal value: " << obj << std::endl;
-  std::cout << "calculation time: " << time.count() << std::endl;
+
+  result["solution"] = picojson::value(solution);
+  result["calculation_time"] = picojson::value((double)time.count());
+  result["optimal_value"] = picojson::value((double)obj);
+  std::cout << picojson::value(result) << std::endl;
 }
