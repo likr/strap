@@ -48,13 +48,31 @@ public:
     c_stack_.resize(m_ * d_);
     uc_stack_.resize(m_);
 
+    construct_core();
+  }
+
+
+  ClassIndexedData<int>* operator()()
+  {
+    while (search(0)) {
+      construct_core();
+    }
+    return solution_;
+  }
+
+
+private:
+  void construct_core()
+  {
     std::copy(
         problem_.c_begin(),
         problem_.c_end(),
         c_stack_.begin());
     uc_stack_[0] = mck_problem_->c();
 
-    make_entropy_core(*upper_bounds_, upper_bound_, PType(0), index_);
+    make_entropy_core(*upper_bounds_, upper_bound_, optimal_value_, index_);
+    std::reverse(index_.begin(), index_.end());
+
     sub_lmck_problems_[0] = new mckp::algorithm::LpRelaxationProblem<PType, double>(*lmck_problem_);
     sub_lmck_problems_[0]->remove(index_.at(0).i());
     for (int depth = 1; depth < m_; ++depth) {
@@ -64,14 +82,6 @@ public:
   }
 
 
-  ClassIndexedData<int>* operator()()
-  {
-    search(0);
-    return solution_;
-  }
-
-
-private:
   template<typename CRandomAccessIterator, typename WRandomAccessIterator>
   bool is_feasible(
       CRandomAccessIterator c_first,
@@ -128,7 +138,7 @@ private:
   }
 
 
-  void search(const int depth)
+  bool search(const int depth)
   {
     const Class& klass = index_.at(depth);
     const int i = klass.i();
@@ -143,9 +153,11 @@ private:
           for (const auto& klass : index_) {
             solution_->get(klass.i()) = current_solution_->get(klass.i());
           }
+          return true;
         }
       }
     } else {
+      bool new_solution_found = false;
       for (const int j : klass) {
         const auto& item = problem_.item(i, j);
         if (fathom(depth, i, j)) {
@@ -156,10 +168,14 @@ private:
             c_stack_[d_ * (depth + 1) + k]
               = c_stack_[d_ * depth + k] - item.w(k);
           }
-          search(depth + 1);
+          new_solution_found = new_solution_found || search(depth + 1);
         }
       }
+      if (new_solution_found) {
+        return true;
+      }
     }
+    return false;
   }
 
 
